@@ -1,0 +1,23 @@
+.campoVerificado {
+  position: relative;
+}
+
+.campoVerificado__texto {
+  font-size: 14px;
+  color: rgb(99, 102, 102);
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #fff;
+  transition: all .3s ease;
+}
+
+.campoVerificado__campo {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  outline: 0;
+  width: 90%;
+  background-color: transparent;
+}
