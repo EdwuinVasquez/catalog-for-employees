@@ -1,0 +1,15 @@
+.subtitulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.subtituloCentrado__texto{
+	font-size: 0.725rem;
+  max-width: 80%;
+  text-align: center;
+  line-height: 1.1rem;
+  color: #8B8E98
+}
