@@ -1,15 +1,78 @@
 //importacion de librerias
-import { React } from "react";
-import { BotonSencillo } from "../botones/boton.jsx";
+import { React, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { BotonSencillo } from "../botones/botonSencillo.jsx";
 import { TituloInicio } from "../titulos/tituloInicio.jsx";
 import { CampoVerificado } from "../inputs/inputBase.jsx";
+import { regex } from "../../../backend/regex.js";
+import { usuario } from "../../../backend/class/usuario.js";
 import '../../style/forms/registroForm.css';
+const classUsuario = new usuario();
 
 export function RegistroFomulario({titulo, icono, tipo}) {
-	const verificar = (expresion, value) =>{
-    if(expresion.test(value)){
-      console.log(value)
-    }
+	const history = useHistory();
+
+	const [datos, setDatos] = useState({
+		cedula: "",
+		nombre: "",
+		nombres: "",
+		apellidos: "",
+		rol: "EMPLEADO",
+		clave: "",
+		pregunta: "",
+		respuesta: "",
+		activado: 0,
+		verificado: 0,
+		contacto: ""
+	});
+
+	const [formCorrecto, setFormCorrecto] = useState({
+		nombres: false,
+		apellidos: false,
+		cedula: false,
+		contacto: false,
+		pregunta: false,
+		respuesta: false,
+		clave: false
+	});
+
+	const verificarEnvio = () => {
+		for (let key in formCorrecto) {
+			if (formCorrecto[key] === false){
+				return false;
+			}};
+			return true;
+	};
+
+	const actualizarDatos = (dato, correcto, key) =>{
+		console.log(history.location.pathname);
+		setDatos(() => {
+			let nuevosDatos = datos;
+			nuevosDatos[key] = dato;
+			if(key == "nombres" || key == "apellidos") nuevosDatos["nombre"] = `${nuevosDatos["nombres"]} ${nuevosDatos["apellidos"]}`;
+			return nuevosDatos;
+		});
+
+		setFormCorrecto(() => {
+			let nuevosDatos = formCorrecto;
+			nuevosDatos[key] = correcto;
+			return nuevosDatos;
+		});
+  }
+
+	const registarse = async (e) =>{
+		e.preventDefault();
+		if(verificarEnvio()) {
+			classUsuario.registarse(datos)
+			.then(resultado => {
+				if(resultado !== false){
+					window.location.href = `empleado/home`;
+				}
+				console.log(resultado);
+			}).catch(function (error) {
+				console.error(error);
+			});
+		}
   }
 
   return(
@@ -17,17 +80,61 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 		<div className="contenedor--centrado">
 			<form className="registroFomulario">
 				<TituloInicio texto="Registarse"></TituloInicio>
-				<div class="registroFomulario__flex">
-					<CampoVerificado texto="Nombre" tipo="text"></CampoVerificado>
-					<CampoVerificado texto="Apellido" tipo="text"></CampoVerificado>
+				<div className="registroFomulario__flex">
+					<CampoVerificado 
+						id="nombres" 
+						expresion={regex.nombre} 
+						texto="Nombre" 
+						tipo="text" 
+						manejarCambio={actualizarDatos}
+						></CampoVerificado>
+					<CampoVerificado 
+						id="apellidos" 
+						expresion={regex.nombre} 
+						texto="Apellido" 
+						tipo="text"
+						manejarCambio={actualizarDatos}
+						></CampoVerificado>
 				</div>
-				<CampoVerificado texto="Cedula" tipo="number" expresion="/^[0-9]*$/gm" verificarContenido={verificar}></CampoVerificado>
-				<CampoVerificado texto="Contacto" tipo="text"></CampoVerificado>
-				<div class="registroFomulario__flex">
-					<CampoVerificado texto="Pregunta de seguridad" tipo="text"></CampoVerificado>
-					<CampoVerificado texto="Respuesta de seguridad" tipo="text"></CampoVerificado>
+				<CampoVerificado 
+					id="cedula" 
+					expresion={regex.cedula} 
+					texto="Cedula" 
+					tipo="number" 
+					manejarCambio={actualizarDatos}
+					></CampoVerificado>
+				<CampoVerificado 
+					id="contacto" 
+					expresion={regex.contacto} 
+					texto="Contacto" 
+					tipo="text"
+					manejarCambio={actualizarDatos}
+					></CampoVerificado>
+				<div className="registroFomulario__flex">
+					<CampoVerificado 
+						id="pregunta" 
+						expresion={regex.pregunta} 
+						texto="Pregunta de seguridad" 
+						tipo="text"
+						manejarCambio={actualizarDatos}
+						></CampoVerificado>
+					<CampoVerificado 
+						id="respuesta" 
+						expresion={regex.respuesta} 
+						texto="Respuesta de seguridad" 
+						tipo="text"
+						manejarCambio={actualizarDatos}
+						></CampoVerificado>
 				</div>
-				<CampoVerificado texto="Clave" tipo="password"></CampoVerificado>
+				<CampoVerificado 
+					id="clave" 
+					expresion={regex.clave} 
+					texto="Clave" 
+					tipo="password"
+					manejarCambio={actualizarDatos}
+					></CampoVerificado>
+				<BotonSencillo texto="Registrarse" manejarClik={registarse}></BotonSencillo>
+				<BotonSencillo texto="Ingresar"></BotonSencillo>
 			</form>
 		</div>
 		</>

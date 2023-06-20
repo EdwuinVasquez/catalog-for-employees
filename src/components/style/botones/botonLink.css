@@ -1,0 +1,24 @@
+.botonLink {
+  text-align: center;
+  position: relative;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 13px;
+  align-self: center;
+  font-weight: bold;
+  color: #1877f2;
+}
+
+.botonLink::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.5px;
+  bottom: -0px;
+  left: 0;
+  background: #dadde1;
+}
+
+.botonLink:hover {
+  text-decoration: underline;
+}

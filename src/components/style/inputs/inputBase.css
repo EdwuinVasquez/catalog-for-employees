@@ -12,6 +12,14 @@
   transition: all .3s ease;
 }
 
+.campoVerificado__texto--verde {
+  color: rgb(0, 255, 0);
+}
+
+.campoVerificado__texto--rojo {
+  color: rgb(255, 0, 0);
+}
+
 .campoVerificado__campo {
   padding: 10px;
   border-radius: 5px;

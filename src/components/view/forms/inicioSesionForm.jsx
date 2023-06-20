@@ -1,6 +1,7 @@
 //importacion de librerias
 import { React } from "react";
-import { BotonSencillo } from "../botones/boton.jsx";
+import { BotonSencillo } from "../botones/botonSencillo.jsx";
+import { BotonLink } from "../botones/botonLink.jsx";
 import { Logo } from "../logos/logo.jsx";
 import { TituloCentradolo } from "../titulos/tituloCentrado.jsx";
 import { SubtituloCentrado } from "../subtitulos/subtituloCentrado.jsx";
@@ -19,7 +20,9 @@ export function LoginFomulario({titulo, icono, tipo}) {
 					></SubtituloCentrado>
 				<CampoIcono titulo="Cedula" icono="AiOutlineUser" tipo="number"></CampoIcono>
 				<CampoIcono titulo="Clave" icono="GoLock" tipo="password"></CampoIcono>
-				<BotonSencillo></BotonSencillo>
+				<BotonLink texto="Olvido su contraseña?"></BotonLink>
+				<BotonSencillo texto="Iniciar sesion"></BotonSencillo>
+				<BotonSencillo texto="Registrarse"></BotonSencillo>
 			</form>
 		</div>
 		</>
