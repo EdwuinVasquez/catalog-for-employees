@@ -6,6 +6,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .App{
   height: 100vh;
+  user-select: none;
 }
 
 .contenedor--centrado{
