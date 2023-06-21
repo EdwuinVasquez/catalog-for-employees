@@ -1,16 +1,16 @@
 //importacion de librerias
 import { React, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import { BotonSencillo } from "../botones/botonSencillo.jsx";
 import { TituloInicio } from "../titulos/tituloInicio.jsx";
 import { CampoVerificado } from "../inputs/inputBase.jsx";
 import { regex } from "../../../backend/regex.js";
 import { usuario } from "../../../backend/class/usuario.js";
+import { LoginFomulario } from "./inicioSesionForm.jsx";
 import '../../style/forms/registroForm.css';
 const classUsuario = new usuario();
 
 export function RegistroFomulario({titulo, icono, tipo}) {
-	const history = useHistory();
 
 	const [datos, setDatos] = useState({
 		cedula: "",
@@ -45,7 +45,6 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 	};
 
 	const actualizarDatos = (dato, correcto, key) =>{
-		console.log(history.location.pathname);
 		setDatos(() => {
 			let nuevosDatos = datos;
 			nuevosDatos[key] = dato;
@@ -66,7 +65,7 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 			classUsuario.registarse(datos)
 			.then(resultado => {
 				if(resultado !== false){
-					window.location.href = `empleado/home`;
+					console.log("d");
 				}
 				console.log(resultado);
 			}).catch(function (error) {
@@ -134,8 +133,15 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 					manejarCambio={actualizarDatos}
 					></CampoVerificado>
 				<BotonSencillo texto="Registrarse" manejarClik={registarse}></BotonSencillo>
-				<BotonSencillo texto="Ingresar"></BotonSencillo>
+				<Link to="/login">
+					<BotonSencillo texto="Ingresar" manejarClik={() => {console.log("a")}}></BotonSencillo>
+				</Link>
 			</form>
+
+			<Routes>
+				<Route exact path='/login/*' element={<LoginFomulario />}/>
+				<Route path="*" element={null}/>
+    	</Routes>
 		</div>
 		</>
 	);

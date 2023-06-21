@@ -21,7 +21,7 @@ export function CampoIcono({titulo, icono, tipo}) {
 		<div className="campoIcono">
 			<label className="campoIcono__titulo">{titulo}</label>
 			{iconoHtml(icono)}
-			<input className="campoIcono__input" placeholder="" title="" type={tipo} ></input>
+			<input className="campoIcono__input" placeholder="" title="" autoComplete="off" type={tipo} ></input>
 		</div>
 	);
 };

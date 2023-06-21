@@ -14,7 +14,7 @@ export function CampoVerificado({id, tipo, texto, expresion, manejarCambio}) {
   return(
 		<>
 		<div className="campoVerificado">
-      <input className="campoVerificado__campo" onChange={value} placeholder="" type={tipo} required="" />
+      <input className="campoVerificado__campo" onChange={value} placeholder="" type={tipo} required="" autoComplete="off" />
       <label className={"campoVerificado__texto  " + (datosValido ? "campoVerificado__texto--verde" : "campoVerificado__texto--rojo")} >{texto}</label>
     </div>
 		</>
