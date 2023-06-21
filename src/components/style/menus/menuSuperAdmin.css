@@ -1,0 +1,30 @@
+.menu{
+    width: 300px;
+}
+
+.menu__link{
+    color: #303440;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.menu__link--inside{
+    border-radius: 6px ;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.menu__link--inside:hover{
+    background: #F6F8FA;
+}
+
+.lista{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background: #fff;
+}
