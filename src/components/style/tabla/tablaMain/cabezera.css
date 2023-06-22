@@ -1,0 +1,9 @@
+.tablaMain__cabezera{
+    width: calc(100% - 2rem);
+    height: calc(10% - 1.6rem);
+    background-color: #fff4;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

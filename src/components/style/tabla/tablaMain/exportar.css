@@ -1,0 +1,75 @@
+.exportar {
+    position: relative;
+}
+
+.exportar__boton {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: #fff6 url(../../../img/export.png) center / 80% no-repeat;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+}
+
+.exportar__boton:hover { 
+    background-color: #fff;
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.exportar__input {
+    display: none;
+}
+
+.exportar__opciones {
+    position: absolute;
+    right: 0;
+    
+    width: 12rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    text-align: center;
+
+    opacity: 0;
+    transform: scale(.8);
+    transform-origin: top right;
+    
+    box-shadow: 0 .2rem .5rem #0004;
+    
+    transition: .2s;
+}
+
+.exportar__input:checked + .exportar__opciones {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 100;
+}
+
+.exportar__label{
+    display: block;
+    width: 100%;
+    padding: .6rem 0;
+    background-color: #f2f2f2;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    transition: .2s ease-in-out;
+}
+
+.exportar__label--fir{
+    padding: 1rem 0;
+    background-color: #86e49d !important;
+}
+
+.exportar__label:hover{
+    transform: scale(1.05);
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.exportar__opciones img{
+    width: 2rem;
+    height: auto;
+}
