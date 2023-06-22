@@ -5,24 +5,25 @@ import { RiSettings4Fill, RiUserFollowFill} from "react-icons/ri";
 import { HiBuildingStorefront } from "react-icons/hi2";
 import { AiFillAppstore } from "react-icons/ai";
 import { VscGraph } from "react-icons/vsc";
+import { GrHistory } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import "../../../style/menus/components/opcion.css";
 
 export function OpcionMenu(props) {
-
-	const [submenu, setSubmenu] = useState(false);
-
-  const click = (key) =>{
-    console.log(key);
-
-		// listElement.classList.toggle('arrow');
-
-    // let height = 0;
-    // let menu = listElement.nextElementSibling;
-    // if(menu.clientHeight == "0"){
-    //     height=menu.scrollHeight;
-    // }
-    // menu.style.height = `${height}px`;
+  const subMenuClick = (e) =>{
+		let elementoPadre = e.target;
+		if(e.target && e.target.tagName != "DIV") elementoPadre = e.target.parentNode;
+		
+		if(elementoPadre.nextElementSibling &&  elementoPadre.nextElementSibling.tagName == "UL"){
+			elementoPadre.classList.toggle('flecha');
+	
+			let height = 0;
+			let menu = elementoPadre.nextElementSibling;
+			if(menu.clientHeight == "0"){
+					height=menu.scrollHeight;
+			}
+			menu.style.height = `${height}px`;
+		}
   }
 
 	const iconoHtml = (key) => {
@@ -45,6 +46,8 @@ export function OpcionMenu(props) {
 				return <AiFillAppstore className="opcion__icono"></AiFillAppstore>
 			case "VscGraph":
 				return <VscGraph className="opcion__icono"></VscGraph>
+			case "GrHistory":
+				return <GrHistory className="opcion__icono"></GrHistory>
 			default:
 				console.log(`El icono ${key} no existe`);
 				break;
@@ -55,10 +58,10 @@ export function OpcionMenu(props) {
 		<>
 			<li 
 				className={"opcion__menu  " + (props.opciones ? "opcion__menu--click" : "")} 
-				onClick={props.opciones ? () => click(this) : () => click("a")}>
+				onClick={subMenuClick}>
         <div className={"opcion__boton  " + (props.opciones ? "opcion__boton--click" : "")}>
 					{iconoHtml(props.icono)}
-          <Link className="opcion__link">{props.nombre}</Link>
+          <Link to={props.ruta} className="opcion__link">{props.nombre}</Link>
 					{props.opciones ? iconoHtml("MdKeyboardArrowDown") : ""}
 					</div>
 				{props.children}
