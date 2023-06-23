@@ -12,7 +12,6 @@ export class admin extends usuario  {
   }
 
   async usuarios(usuario = 0) {
-    let a = await classAxiosGet.obtenerUsuario(usuario);
-    console.log(a)
+    return await classAxiosGet.obtenerUsuario(usuario);
   }
 }

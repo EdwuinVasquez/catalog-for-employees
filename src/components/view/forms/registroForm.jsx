@@ -64,7 +64,7 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 		if(verificarEnvio()) {
 			classUsuario.registarse(datos)
 			.then(resultado => {
-				if(resultado !== false){
+				if(resultado == false){
 					console.log("d");
 				}
 				console.log(resultado);
@@ -109,8 +109,7 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 					tipo="text"
 					manejarCambio={actualizarDatos}
 					></CampoVerificado>
-				<div className="registroFomulario__flex">
-					<CampoVerificado 
+				<CampoVerificado 
 						id="pregunta" 
 						expresion={regex.pregunta} 
 						texto="Pregunta de seguridad" 
@@ -124,7 +123,6 @@ export function RegistroFomulario({titulo, icono, tipo}) {
 						tipo="text"
 						manejarCambio={actualizarDatos}
 						></CampoVerificado>
-				</div>
 				<CampoVerificado 
 					id="clave" 
 					expresion={regex.clave} 
