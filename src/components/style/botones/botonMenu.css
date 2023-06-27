@@ -1,0 +1,51 @@
+.botonMenu {
+  position: absolute;
+  top: 0;
+  padding: 5px;
+  display: flex;
+  height: 3em;
+  width: 120px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+ }
+ 
+ .botonMenu > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+ }
+ 
+ .botonMenu:hover > svg {
+  font-size: 1.2em;
+ }
+ 
+ .botonMenu:hover {
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  transform: translateY(5px);
+ }
+
+.botonMenu--activo{
+  left: 300px;
+}
+
+.botonMenu--desactivo{
+  left: 0px;
+}
+
+.botonMenu--activo:hover > svg{
+  transform: translateX(-5px);
+  transform: translateY(2px);
+}
+
+.botonMenu--desactivo:hover > svg{
+  transform: translateY(2px);
+  transform: translateX(5px);
+}
