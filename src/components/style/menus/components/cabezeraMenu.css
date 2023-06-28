@@ -3,7 +3,7 @@
     height: 15vh;
     position: relative;
     display: grid;
-    grid-template-columns: .6fr 1fr .4fr;
+    grid-template-columns: .6fr 1fr;
     align-items: center;
     justify-content: center;
 }

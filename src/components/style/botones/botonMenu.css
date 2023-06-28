@@ -14,6 +14,7 @@
   cursor: pointer;
   border: none;
   background: #fff;
+  z-index: 200;
  }
  
  .botonMenu > svg {

@@ -1,0 +1,33 @@
+.estado {
+    padding: .4rem 0;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.estado--bloqueado {
+    background-color: #86e49d;
+    color: #006b21;
+}
+
+.estado--normal {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+.estado--delivered {
+    background-color: #86e49d;
+    color: #006b21;
+}
+
+.estado--cancelled {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+.estado--pending {
+    background-color: #ebc474;
+}
+
+.estado--shipped {
+    background-color: #6fcaea;
+}
