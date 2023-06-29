@@ -26,4 +26,29 @@ export class usuario {
 
     return await classAxiosPost.registarse(nuevoUsuario);
   }
+
+  async ingresar(usuario, clave) {
+    return classAxiosGet.obtenerUsuario(usuario)
+    .then(async resultado =>{
+      if(resultado === false || resultado.length <= 0){
+        throw new Error("Usuario No encontrado");
+      }
+
+      const validarClave = await compararHash(clave, resultado[0]['CLAVE']);
+      if(clave != resultado[0]['CLAVE']){
+        if(!validarClave){
+          throw new Error("La contraseña no es valida");
+        }
+      }
+
+      if(resultado[0]['USUARIO_ACTIVADO'] == 0 || resultado[0]['USUARIO_VERIFICADO'] == 0 ){
+        throw new Error("El usuario ingresado no cuenta con una cuenta activa en el sistema");
+      }
+
+      return resultado;
+    }).catch(function (error) {
+      console.error(error);
+      return error;
+    });
+  }
 }
