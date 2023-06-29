@@ -1,35 +1,41 @@
 //importacion de librerias
 import { React } from "react";
 import { TablaTitulos } from "./titulos";
-import "../../../../style/tabla/tablaMain/temporal.css"
+import "../../../../style/tabla/tablaMain/contenido.css"
 import { TablaBody } from "./datos";
 
-export function TablaCotenido({titulos, contenido, tipo}) {
+export function TablaCotenido({titulos, contenido, actualizar}) {
+
+  const datos = (() =>{
+    try {
+      console.clear();
+      if(contenido[0].length > 2){
+        return contenido.map((valor) =>
+          <TablaBody datos={valor}></TablaBody>
+        )
+      }else{
+        console.log(contenido)
+        return <h1>No hay datos almacenados</h1>
+      }
+    } catch (error) {
+      actualizar();
+    }
+
+    
+  });
+
   return(
     <>
-    <section className="table__body">
+    <section className="tabla__contenido">
       <table>
         <TablaTitulos titulos={titulos}></TablaTitulos>
         <tbody>
           {
-						contenido.map((valor) =>
-							<TablaBody datos={valor}></TablaBody>
-						)
-					}
+            datos()
+          }
         </tbody>
       </table>
 		</section>
 		</>
 	);
 };
-
-{/* <tr>
-    <td> 1 </td>
-    <td> <img src="images/Zinzu Chan Lee.jpg" alt="" />Zinzu Chan Lee</td>
-    <td> Seoul </td>
-    <td> 17 Dec, 2022 </td>
-    <td>
-        <p className="status      shipped delivered cancelled pending">Delivered</p>
-    </td>
-    <td> <strong> $128.90 </strong></td>
-</tr> */}
