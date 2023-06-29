@@ -5,29 +5,29 @@
 }
 
 .estado--bloqueado {
-    background-color: #86e49d;
-    color: #006b21;
+    background-color: #6a6969e8;
+    color: #fff;
 }
 
-.estado--normal {
-    background-color: #d893a3;
-    color: #b30021;
+.estado--activo {
+    background-color: #48e16d;
+    color: #000000;
 }
 
-.estado--delivered {
-    background-color: #86e49d;
-    color: #006b21;
+.estado--entregado {
+    background-color: #48e16d;
 }
 
-.estado--cancelled {
-    background-color: #d893a3;
-    color: #b30021;
+.estado--cancelado {
+    background-color: #f32051de;
+    color: #fff;
 }
 
-.estado--pending {
-    background-color: #ebc474;
+.estado--pendiente {
+    background-color: #fffd35bf;
 }
 
-.estado--shipped {
-    background-color: #6fcaea;
+.estado--pago {
+    background-color: #ffb700ad;
+    color: #000;
 }

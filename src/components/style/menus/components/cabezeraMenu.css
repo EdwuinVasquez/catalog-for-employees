@@ -3,7 +3,7 @@
     height: 15vh;
     position: relative;
     display: grid;
-    grid-template-columns: .6fr 1fr;
+    grid-template-columns: .2fr 1fr;
     align-items: center;
     justify-content: center;
 }
@@ -20,5 +20,6 @@
 .cabezeraMenu__nombre{
     font-weight: 300;
     text-transform: lowercase;
-    width: 45%;
+    width: 95%;
+    text-align: center;
 }
