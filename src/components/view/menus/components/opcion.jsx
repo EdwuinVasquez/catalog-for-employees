@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaHome, FaMoneyBill, FaUserPlus} from "react-icons/fa";
 import { RiSettings4Fill, RiUserFollowFill} from "react-icons/ri";
 import { HiBuildingStorefront } from "react-icons/hi2";
@@ -28,8 +28,8 @@ export function OpcionMenu(props) {
 
 	const iconoHtml = (key) => {
 		switch (key) {
-			case "MdKeyboardArrowDown":
-				return <MdKeyboardArrowDown className="opcion__flecha"/>
+			case "MdKeyboardArrowRight":
+				return <MdKeyboardArrowRight className="opcion__flecha"/>
 			case "FaHome":
 				return <FaHome className="opcion__icono"></FaHome>
 			case "FaMoneyBill":
@@ -62,7 +62,7 @@ export function OpcionMenu(props) {
         <div className={"opcion__boton  " + (props.opciones ? "opcion__boton--click" : "")}>
 					{iconoHtml(props.icono)}
           <Link to={props.ruta} className="opcion__link">{props.nombre}</Link>
-					{props.opciones ? iconoHtml("MdKeyboardArrowDown") : ""}
+					{props.opciones ? iconoHtml("MdKeyboardArrowRight") : ""}
 					</div>
 				{props.children}
       </li>
