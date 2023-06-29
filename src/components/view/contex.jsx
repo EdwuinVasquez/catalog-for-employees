@@ -3,10 +3,12 @@ import { React, createContext, useState, useContext } from 'react';
 export const DataContext = createContext();
 export function DataContextProvider(props) {
   
+  const urlBase = `${window.location.protocol}//${window.location.host}/build/#/`;
   const [contexMenu, setContexMenu] = useState(false);
-  const [contexUsuario, setContexUsuario] = useState("ADMIN");
+  const [contexUsuario, setContexUsuario] = useState(null);
+  const [contexUsuarioLogin, setContexUsuarioLogin] = useState(null);
 
-  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu};
+  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu, contexUsuarioLogin, setContexUsuarioLogin, urlBase};
 
   return (
     <DataContext.Provider value={valor}>
@@ -15,7 +17,7 @@ export function DataContextProvider(props) {
   );
 }
 
-export function useDataContex(params) {
+export function useDataContex() {
     const contex = useContext(DataContext);
 
     if(!contex){
