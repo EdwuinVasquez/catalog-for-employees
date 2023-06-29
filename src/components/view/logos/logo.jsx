@@ -1,7 +1,7 @@
 //importacion de librerias
 import {React } from "react";
 import '../../style/logos/logo.css'
-import logo from "../../img/logo-rimoplasticas.png";
+import { logo } from "./img.jsx";
 
 export function Logo() {
 	return(
