@@ -1,52 +1,66 @@
 //importacion de librerias
 import { React } from "react";
-import "../../../../style/tabla/tablaMain/temporal.css"
+import "../../../../style/tabla/tablaMain/datos.css"
 
 export function TablaBody({datos}) {
 	const generarTupla = (tupla) =>{
+		console.clear();
 		let key = tupla["tipo"]; 
+		let id = tupla["id"]; 
 		let valor = tupla["valor"]; 
 		let img = tupla["img"]; 
 		let subClase = tupla["subClase"]; 
-		return tipo(key, valor, img, subClase)
+		let operacion = tupla["operacion"]; 
+		let parametro = tupla["parametro"]; 
+		return tipo(key, id, valor, img, subClase, operacion, parametro)
 	}
 
 	const estadoNombre = (valor) =>{
 		switch (valor) {
 			case "0":
-				return "Cancelado";
+				return "Bloqueado";
 			case "1":
-				return "Pendiente";
+				return "Activo";
 			case "2":
-				return "Entregado";
+				return "Cancelado";
 			case "3":
+				return "Pendiente";
+			case "4":
+				return "Entregado";
+			case "5":
 				return "Pago";
 			default:
-				return "delivered";
+				return "Error";
 		}
 	}
 
 	const subClase = (valor) =>{
 		switch (valor) {
 			case "0":
-				return "cancelled";
+				return "bloqueado";
 			case "1":
-				return "pending";
+				return "activo";
 			case "2":
-				return "delivered";
+				return "cancelado";
 			case "3":
-				return "shipped";
+				return "pendiente";
+			case "4":
+				return "pago";
+			case "5":
+				return "entregado";
 			default:
-				return "delivered";
+				return "bloqueado";
 		}
 	}
-
-	const tipo = (key, valor, url, subClaseValor) => {
+	
+	const tipo = (key, id, valor, url, subClaseValor, operacion, parametro) => {
 		switch (key) {
+			case "boton":
+				return <td onClick={() => operacion(id, parametro)} >  {valor} </td>
 			case "normal":
-				return <td> {valor} </td>
+				return <td > {valor} </td>
 			case "estado":
-					return <td> <strong><p className={"status  "+ subClase(subClaseValor)}> {estadoNombre(valor)} </p></strong> </td>
+					return <td> <strong><p className={"estado  estado--"+ subClase(subClaseValor)}> {estadoNombre(valor)} </p></strong> </td>
 			case "costo":
 				return <td> <strong>${valor}</strong> </td>
 			case "imag":
@@ -57,26 +71,14 @@ export function TablaBody({datos}) {
 	}
 
   return(
-    <>
-      <tr key={datos[0]["key"]}>
-				{
-					datos.map((data) => 
-						generarTupla(data)
-					)
-				}
-      </tr>
-		</>
+  <>
+    <tr key={datos[0]["key"]}>
+			{
+				datos.map((data) => 
+					generarTupla(data)
+				)
+			}
+    </tr>
+	</>
 	);
 };
-
-{/* <td><img src="images/Jeet Saru.jpg" alt="" /> Jeet Saru </td> */}
-{/* <tr>
-    <td> 1 </td>
-    <td> <img src="images/Zinzu Chan Lee.jpg" alt="" />Zinzu Chan Lee</td>
-    <td> Seoul </td>
-    <td> 17 Dec, 2022 </td>
-    <td>
-        <p className="status      shipped delivered cancelled pending">Delivered</p>
-    </td>
-    <td> <strong> $128.90 </strong></td>
-</tr> */}
