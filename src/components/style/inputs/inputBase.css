@@ -20,6 +20,9 @@
   color: rgb(255, 0, 0);
 }
 
+.campoVerificado__texto--vacio{
+  color: rgb(71, 71, 71);
+}
 .campoVerificado__campo {
   padding: 10px;
   border-radius: 5px;
