@@ -15,7 +15,8 @@
 }
 
 .estado--entregado {
-    background-color: #48e16d;
+    background-color: #0d3ea0;
+    color: #fff;
 }
 
 .estado--cancelado {
@@ -28,6 +29,6 @@
 }
 
 .estado--pago {
-    background-color: #ffb700ad;
-    color: #000;
+    background-color: #0da042;
+    color: #fff;
 }

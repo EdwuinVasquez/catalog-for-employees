@@ -1,8 +1,11 @@
 //importacion de librerias
 import { React } from "react";
-import "../../../../style/tabla/tablaMain/datos.css"
+import "../../../../style/tabla/tablaMain/datos.css";
+import { useDataContex } from "../../../contex";
 
 export function TablaBody({datos}) {
+	const { urlBaseImg } = useDataContex();
+
 	const generarTupla = (tupla) =>{
 		console.clear();
 		let key = tupla["tipo"]; 
@@ -64,7 +67,7 @@ export function TablaBody({datos}) {
 			case "costo":
 				return <td> <strong>${valor}</strong> </td>
 			case "imag":
-				return <td><img src={url} alt="" /> {valor} </td>
+				return <td><img src={`${urlBaseImg}/static/media/galeria/${url}`} alt="" /> {valor} </td>
 			default:
 				return <td> "valor no recibido" </td>
 		}

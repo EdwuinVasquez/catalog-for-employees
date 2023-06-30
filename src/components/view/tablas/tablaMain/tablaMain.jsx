@@ -6,13 +6,17 @@ import { TablaCotenido } from "./componTabla/contenido";
 
 export function TablaMain({buscadorNombre, buscadorTitulo, tablaTitulos, tablaContenido, actualizar}) {
   const [contenidoFilter, setContenidoFilter] = useState([[]]);
-  const realizarBusqueda = (e) =>{
-    let valueBuscador = e.target.value.trim();
-    let datosFiltrados = tablaContenido.filter(
-      tupla => (tupla[0]['valor'].includes(valueBuscador) || tupla[1]['valor'].includes(valueBuscador)) 
-    );
-    console.clear();
-    if(datosFiltrados.length > 0) setContenidoFilter(datosFiltrados);
+  const realizarBusqueda = (buscar) =>{
+    try {
+      let valueBuscador = buscar.trim();
+      let datosFiltrados = tablaContenido.filter(
+        tupla => (tupla[0]['valor'].toLowerCase().includes(valueBuscador.toLowerCase()) || tupla[1]['valor'].toLowerCase().includes(valueBuscador.toLowerCase())) 
+      );
+      console.clear();
+      if(datosFiltrados.length > 0) setContenidoFilter(datosFiltrados);
+    } catch (error) {
+      console.warn(error);
+    }
   }
 
   return(
