@@ -26,8 +26,9 @@
 }
 
 td img {
-    width: 36px;
-    height: 36px;
+    cursor: pointer;
+    width: 80px;
+    height: 45px;
     margin-right: .5rem;
     border-radius: 50%;
     vertical-align: middle;
@@ -46,6 +47,7 @@ thead th {
     background-color: #d5d1defe;
     cursor: pointer;
     text-transform: capitalize;
+    z-index: 10;
 }
 
 tbody tr:nth-child(even) {
