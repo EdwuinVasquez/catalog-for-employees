@@ -13,8 +13,14 @@ export class admin extends usuario  {
     this.sesion = "admin";
   }
 
+  // GET
   async usuarios(usuario = 0) {
     return await classAxiosGet.obtenerUsuario(usuario);
+  }
+
+  // GET
+  async productoBase() {
+    return await classAxiosGet.obtenerProductoBase();
   }
 
   // PUT
