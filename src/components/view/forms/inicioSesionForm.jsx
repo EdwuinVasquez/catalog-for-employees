@@ -59,7 +59,7 @@ export function LoginFomulario() {
 		<div className="contenedor--centrado">
 			<form className="loginFomulario">
 				<Logo></Logo>
-				<TituloCentradolo texto="Rimoplasticas S.A"></TituloCentradolo>
+				<TituloCentradolo texto=""></TituloCentradolo>
 				<SubtituloCentrado 
 					texto="Bienvenido al catalogo de los empleados, antes de empezar ingrese a su cuenta"
 					></SubtituloCentrado>

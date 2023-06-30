@@ -1,15 +1,16 @@
 //importacion de librerias
-import { React } from "react";
+import { React, useEffect } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import { BotonSencillo } from "../botones/botonSencillo.jsx";
 import { Logo } from "../logos/logo.jsx";
 import { TituloCentradolo } from "../titulos/tituloCentrado.jsx";
 import { SubtituloCentrado } from "../subtitulos/subtituloCentrado.jsx";
 import '../../style/forms/inicioSesionForm.css'
-import { RegistroFomulario } from "../forms/registroForm.jsx";
-import { LoginFomulario } from "../forms/inicioSesionForm.jsx";
 
-export function Index({titulo, icono, tipo}) {
+export function Index() {
+	useEffect (() =>{
+		localStorage.removeItem("usuario");
+	})
   return(
 	<div className="contenedor--centrado">
 		<form className="loginFomulario">
