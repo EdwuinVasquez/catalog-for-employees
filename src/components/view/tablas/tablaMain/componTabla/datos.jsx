@@ -2,10 +2,29 @@
 import { React } from "react";
 import "../../../../style/tabla/tablaMain/datos.css";
 import { useDataContex } from "../../../contex";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import swal from'sweetalert2';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { regex } from "../../../../../backend/regex";
+import { BotonTabla } from "./boton";
 
 export function TablaBody({datos}) {
 	const { urlBaseImg } = useDataContex();
 
+	const maximixarImagen = (url, nombre) => {
+		swal.fire({
+			title: `${nombre}`,
+			imageUrl: `${url}`,
+			imageWidth: 400,
+			imageHeight: 200,
+		})
+	}
+
+	const formatearNumero = (numero) =>{
+		const expresion = regex.pesos;
+		const remplazo = "$1.";
+		return numero.toString().replace(expresion, remplazo);
+	}
 	const generarTupla = (tupla) =>{
 		console.clear();
 		let key = tupla["tipo"]; 
@@ -59,15 +78,19 @@ export function TablaBody({datos}) {
 	const tipo = (key, id, valor, url, subClaseValor, operacion, parametro) => {
 		switch (key) {
 			case "boton":
-				return <td onClick={() => operacion(id, parametro)} >  {valor} </td>
+				return <td className="dato--boton" >  <BotonTabla operacion={operacion} id={id} parametro={parametro} tipo={subClaseValor}></BotonTabla> </td>
 			case "normal":
-				return <td > {valor} </td>
+				return <td className="dato--normal"> {valor} </td>
 			case "estado":
-					return <td> <strong><p className={"estado  estado--"+ subClase(subClaseValor)}> {estadoNombre(valor)} </p></strong> </td>
+					return <td className="dato--estado"> <strong><p className={"estado  estado--"+ subClase(subClaseValor)}> {estadoNombre(valor)} </p></strong> </td>
 			case "costo":
-				return <td> <strong>${valor}</strong> </td>
+				return <td className="dato--costo"> <strong>${formatearNumero(valor)}</strong> </td>
 			case "imag":
-				return <td><img src={`${urlBaseImg}/static/media/galeria/${url}`} alt="" /> {valor} </td>
+				return <>
+				<td className="dato--imag"> 
+					<LazyLoadImage onClick={() => maximixarImagen(`${urlBaseImg}${url}`, valor)} src={`${urlBaseImg}${url}`} alt="" effect="blur"/> 
+				</td>
+				</>
 			default:
 				return <td> "valor no recibido" </td>
 		}
