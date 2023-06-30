@@ -9,6 +9,11 @@ input[type=number]::-webkit-outer-spin-button {
   user-select: none;
   display: flex;
   flex-direction: row;
+  text-transform: lowercase;
+}
+
+*:first-letter {
+  text-transform: uppercase;
 }
 
 .contenedor--centrado{
