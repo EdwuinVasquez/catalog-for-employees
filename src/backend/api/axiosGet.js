@@ -12,4 +12,16 @@ export class axiosGet {
 		});
 		return resultado;
 	}
+
+	async obtenerProductoBase(){
+		let resultado = await conex.get(`/getProductoBase`)
+		.then(resultado => {
+			return resultado.data;
+		}).catch(function (error) {
+			console.clear();
+			console.warn(error);
+			return false;
+		});
+		return resultado;
+	}
 }
