@@ -8,7 +8,7 @@ const classAdmin = new admin();
 export function EmpleadosLista() {
 	const [datosMain, setDatosMain] = useState();
 	
-	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Operacion", "Estado"]
+	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Cambiar estado", "Eliminar empleado", "Estado"]
 
 	const generarLista = async () => {
 		classAdmin.usuarios()
@@ -17,7 +17,9 @@ export function EmpleadosLista() {
 				console.clear();
 				throw new Error("No hay resultados almacenados");
 			}
-			const empleadosLista = resultado.filter(tupla => tupla["ROL"] === "EMPLEADO");
+			const empleadosLista = resultado.filter(tupla => 
+				tupla["ROL"] === "EMPLEADO" && tupla["USUARIO_VERIFICADO"] === "1"
+			);
 			const nuevosDatos = empleadosLista.map((valor) =>
 				[{
 					key: valor["CEDULA"],
@@ -70,7 +72,16 @@ export function EmpleadosLista() {
 					tipo: "boton",
 					valor: "Modificar",
 					img: "",
-					subClase: "",
+					subClase: "estadoUsuario",
+					operacion: modificarEstadoEmpleado,
+					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
+				},{
+					key: valor["CEDULA"],
+					id: valor["CEDULA"],
+					tipo: "boton",
+					valor: "Eliminar",
+					img: "",
+					subClase: "eliminarUsuario",
 					operacion: modificarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				},{
@@ -85,6 +96,7 @@ export function EmpleadosLista() {
 				}]
 			);
 			if(nuevosDatos.length > 0) setDatosMain(nuevosDatos);
+			if(nuevosDatos.length <= 0) setDatosMain([[]]);
 		}).catch(function (error) {
 			setDatosMain([[]]);
 			console.error(error);
