@@ -4,11 +4,13 @@ export const DataContext = createContext();
 export function DataContextProvider(props) {
   
   const urlBase = `${window.location.protocol}//${window.location.host}/build/#/`;
+  // const urlBaseImg = `${window.location.protocol}//${window.location.host}/build/`;
+  const urlBaseImg = `http://localhost/build/static/media/galeria/`;
   const [contexMenu, setContexMenu] = useState(false);
   const [contexUsuario, setContexUsuario] = useState(null);
   const [contexUsuarioLogin, setContexUsuarioLogin] = useState(null);
 
-  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu, contexUsuarioLogin, setContexUsuarioLogin, urlBase};
+  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu, contexUsuarioLogin, setContexUsuarioLogin, urlBase, urlBaseImg};
 
   return (
     <DataContext.Provider value={valor}>
