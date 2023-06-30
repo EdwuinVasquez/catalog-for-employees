@@ -5,4 +5,5 @@ export const regex = {
   pregunta: /^(.){6,}$/,	
   respuesta: /^(.){4,}$/,
   clave: /^[a-zA-Z0-9]{4,}$/,
+  pesos: /(\d)(?=(\d{3})+(?!\d))/g,
 }
