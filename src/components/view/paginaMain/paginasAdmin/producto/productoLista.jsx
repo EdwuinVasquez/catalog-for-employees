@@ -1,9 +1,9 @@
 //importacion de librerias
 import { React, useState, useEffect } from "react";
 import { evaluate } from 'mathjs'
-import { TablaMain } from "../../tablas/tablaMain/tablaMain.jsx";
-import { admin } from "../../../../backend/class/admin.js"
-import { useDataContex } from "../../contex.jsx"
+import { TablaMain } from "../../../tablas/tablaMain/tablaMain.jsx";
+import { admin } from "../../../../../backend/class/admin.js"
+import { useDataContex } from "../../../contex.jsx"
 const classAdmin = new admin();
 
 export function ProductoLista() {

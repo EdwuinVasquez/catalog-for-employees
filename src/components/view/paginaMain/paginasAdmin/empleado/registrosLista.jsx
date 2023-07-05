@@ -1,15 +1,22 @@
-//importacion de librerias
-import { React, useState, useEffect } from "react";
-import { TablaMain } from "../../tablas/tablaMain/tablaMain.jsx";
-import { admin } from "../../../../backend/class/admin.js"
-import { useDataContex } from "../../contex.jsx"
+/*-- Librerias --*/
+import { React, useState } from "react";
+
+/*-- Componentes --*/
+import { TablaMain } from "../../../tablas/tablaMain/tablaMain.jsx";
+
+/*-- Clases y controladores --*/
+import { admin } from "../../../../../backend/class/admin.js"
+import { alertaConfirmar, alertaToast } from "../../../../../backend/swetAlert2.js";
 const classAdmin = new admin();
 
 export function RegistroLista() {
+	/*-- Lista de nuevos registros --*/
 	const [datosMain, setDatosMain] = useState();
 	
-	const titulosTabla = ["Cedula", "Nombre", "Registro", "Contato", "Operacion", "Estado"]
+	/*-- Titulos de la tabla --*/
+	const titulosTabla = ["Cedula", "Nombre", "Registro", "Contato", "Verificar", "Estado"]
 
+	/*-- Generar la lista de nuevos registros --*/
 	const generarLista = async () => {
 		classAdmin.usuarios()
 		.then(resultado => {
@@ -83,23 +90,35 @@ export function RegistroLista() {
 		});
 	}
 
+	/*-- Activar el empleado --*/
 	const modificarEstadoEmpleado = async (cedula, dato) =>{
 		const nuevoEstado = {
 			cedula: cedula,
 			estado: dato,
 		}
 
-		classAdmin.modificarEstadoUsuario(nuevoEstado)
-		.then(resultado =>{
-			if(resultado === false){
-				console.clear();
-				throw new Error("No hay resultados almacenados");
+		alertaConfirmar("Seguro que desea verificar el usuario como empleado", `Cedula: ${cedula}`, "warning")
+		.then(confirm =>{
+			if(confirm){
+				classAdmin.modificarEstadoVerificadoUsuario(nuevoEstado)
+		    .then(resultado =>{
+		    	if(resultado === false){
+		    		console.clear();
+		    		alertaToast("warning", "Ocurrio un error", 5000, "top-end");
+		    		throw new Error("No hay resultados almacenados");
+		    	}
+		    	alertaToast(
+		    		resultado[0]["RESULTADO"].toUpperCase().includes("ERROR") ? "error" : "success", 
+		    		resultado[0]["RESULTADO"], 
+		    		5000, 
+		    		"top-end");
+		    	generarLista();
+		    }).catch(function (error) {
+		    	console.error(error);
+		    });
 			}
-			
-			generarLista();
-		}).catch(function (error) {
-			console.error(error);
-		});
+		})
+		
 	}
 
   return(
