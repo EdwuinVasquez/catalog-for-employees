@@ -1,6 +1,7 @@
 import { conex } from "./axios.js";
 
 export class axiosPost {
+	//POST registar usuario
 	async registarse(nuevoUsuario){
 		let resultado = await conex.post(`/pos/usuario/registro`, nuevoUsuario)
 		.then(resultado => {
