@@ -1,0 +1,17 @@
+.cardProductoDetalles__imagen{
+	height: 35%;
+	width: 100%;
+	border-radius: .5rem;
+	transition: .3s ease; 
+}
+
+.cardProductoDetalles__imagen--imgen{
+	height: 35%;
+	width: 100%;
+}
+
+/*Hover*/
+.cardProductoDetalles__imagen:hover {
+	transform: scale(1);
+	box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}

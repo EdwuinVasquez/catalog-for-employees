@@ -1,0 +1,49 @@
+
+.cardProductoDetalles__final {
+	width: 100%;
+	height: 15%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
+	border-top: 1px solid #ddd;
+}
+
+.cardProductoDetalles__final--precioBase {
+	text-decoration: line-through;
+	font-weight: 600;
+	font-size: 1.2em;
+	line-height: 1.5;
+	color: #525252;
+}
+
+.cardProductoDetalles__final--precioFinal {
+	font-weight: 600;
+	font-size: 1.2em;
+	line-height: 1.5;
+	color: #f73636;
+}
+
+.cardProductoDetalles__final--precios{
+	display: flex;
+    flex-direction: column;
+}
+
+.cardProductoDetalles__final--boton {
+	border: 1px solid #252525;
+	display: flex;
+	padding: .3em;
+	cursor: pointer;
+	border-radius: 50px;
+	transition: .3s ease-in-out;
+}
+
+.cardProductoDetalles__final--svg {
+	width: 20px;
+	height: 20px;
+}
+
+.cardProductoDetalles__final--boton:hover {
+	border: 1px solid #ffcaa6;
+	background-color: #ffcaa6;
+}

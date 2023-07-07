@@ -1,0 +1,20 @@
+.cardProductoDetalles__informacion {
+	height: 30%;
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+.cardProductoDetalles__informacion--titulo {
+	font-weight: 700;
+  font-size: 1em;
+  padding-bottom: 10px;
+  text-align: center;
+  line-height: 1.5;
+}
+  
+.cardProductoDetalles__informacion--detalles {
+	font-size: .8em;
+  overflow: hidden;
+  text-align: initial;
+  padding-bottom: 10px;
+}
