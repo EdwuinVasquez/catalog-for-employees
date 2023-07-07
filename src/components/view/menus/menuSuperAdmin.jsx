@@ -1,15 +1,21 @@
-import { React, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+/*-- Estilos --*/
+import "../../style/menus/menuSuperAdmin.css";
+import "../../style/menus/components/opcion.css";
+
+/*-- Librerias --*/
+import { React } from "react";
+
+/*-- Componentes --*/
 import { OpcionMenu } from "./components/opcion.jsx";
 import { CabezeraMenu } from "./components/cabezeraMenu.jsx";
 import { SubOpcionMenu } from "./components/subOpcion.jsx";
 import { BotonMenu } from "../botones/botonMenu.jsx";
-import "../../style/menus/menuSuperAdmin.css";
-import "../../style/menus/components/opcion.css";
+
+/*-- Clases y controladores  --*/
 import { useDataContex } from "../contex.jsx";
 
 export function MenuSuperAdmin() {
-	const { contexUsuario, setContexUsuario, contexMenu, setContexMenu } = useDataContex();
+	const { contexUsuario, contexMenu } = useDataContex();
 
 	const adminSuper = () =>{
 		if(contexUsuario == "SUPER"){
@@ -72,6 +78,7 @@ export function MenuSuperAdmin() {
 					</OpcionMenu>
 					<OpcionMenu opciones={false} ruta="historial" icono="GrHistory" nombre="Historial"></OpcionMenu>
 					<OpcionMenu opciones={false} ruta="configuracion" icono="RiSettings4Fill" nombre="Configuracion"></OpcionMenu>
+					<OpcionMenu opciones={false} ruta="../" icono="ImExit" nombre="Cerrar sesion"></OpcionMenu>
 				</ul>
 			</nav>
 		</div>

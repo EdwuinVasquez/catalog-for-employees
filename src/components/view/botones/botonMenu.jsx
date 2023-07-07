@@ -5,7 +5,7 @@ import '../../style/botones/botonMenu.css';
 import { useDataContex } from "../contex";
 
 export function BotonMenu({manejarClick, estado}) {
-	const { contexUsuario, setContexUsuario, contexMenu, setContexMenu } = useDataContex();
+	const { contexUsuario, setContexUsuario, contexMenu, setContexMenu, setDetallesActivo } = useDataContex();
 
 
     const iconoHtml = (key) => {
@@ -18,11 +18,16 @@ export function BotonMenu({manejarClick, estado}) {
 				return <><span>Indefinido</span></>
 		}
 	}
+
+	const cambiarEstado = () =>{
+		setContexMenu(!contexMenu);
+		setDetallesActivo(false);
+	}
 	return(
 		<div>
       <button 
           className={"botonMenu  " + (estado === false ? "botonMenu--desactivo" : "botonMenu--activo")}
-					onClick={() => setContexMenu(!contexMenu)} >
+					onClick={cambiarEstado} >
           {
             iconoHtml(estado === false ? "MdKeyboardDoubleArrowRight" : "MdKeyboardDoubleArrowLeft" )
           }

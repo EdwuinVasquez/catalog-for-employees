@@ -6,6 +6,7 @@ import { HiBuildingStorefront } from "react-icons/hi2";
 import { AiFillAppstore } from "react-icons/ai";
 import { VscGraph } from "react-icons/vsc";
 import { GrHistory } from "react-icons/gr";
+import { ImExit } from "react-icons/im";
 import { Link } from "react-router-dom";
 import "../../../style/menus/components/opcion.css";
 
@@ -48,6 +49,8 @@ export function OpcionMenu(props) {
 				return <VscGraph className="opcion__icono"></VscGraph>
 			case "GrHistory":
 				return <GrHistory className="opcion__icono"></GrHistory>
+			case "ImExit":
+				return <ImExit className="opcion__icono"></ImExit>
 			default:
 				console.log(`El icono ${key} no existe`);
 				break;
