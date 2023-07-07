@@ -2,7 +2,7 @@
 import { React, useState } from "react";
 import '../../style/inputs/inputBase.css';
 
-export function CampoVerificado({id, tipo, texto, expresion, manejarCambio}) {
+export function CampoVerificado({id, tipo, texto, expresion, manejarCambio, placeholder = ""}) {
 	const [datosValido, setDatosValido] = useState(false);
 	const [valueCampo, setValueCampo] = useState(true);
 
@@ -16,7 +16,7 @@ export function CampoVerificado({id, tipo, texto, expresion, manejarCambio}) {
   return(
 		<>
 		<div className="campoVerificado">
-      <input className="campoVerificado__campo" onChange={value} placeholder="" type={tipo} required="" autoComplete="off" />
+      <input className="campoVerificado__campo" onChange={value} placeholder={placeholder} type={tipo} defaultValue={placeholder} required="" autoComplete="off" />
       <label 
         className={"campoVerificado__texto  " + (datosValido ? "campoVerificado__texto--verde" : "campoVerificado__texto--rojo") + (valueCampo ? "  campoVerificado__texto--vacio" : "  ")} 
         >{texto}</label>
