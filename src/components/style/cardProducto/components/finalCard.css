@@ -13,7 +13,7 @@
 	font-weight: 600;
 	font-size: 1.2em;
 	line-height: 1.5;
-	color: #f73636;
+	color: #000000;
 }
 
 .cardProducto__final--boton {
@@ -31,6 +31,10 @@
 }
 
 .cardProducto__final--boton:hover {
-	border: 1px solid #ffcaa6;
-	background-color: #ffcaa6;
+	border: 1px solid #4cca58;
+	background-color: #5cc466;
+}
+
+.cardProducto__final--boton:hover svg {
+	color: #ffffff;
 }
