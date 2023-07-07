@@ -9,8 +9,9 @@ export function DataContextProvider(props) {
   const [contexMenu, setContexMenu] = useState(false);
   const [contexUsuario, setContexUsuario] = useState(null);
   const [contexUsuarioLogin, setContexUsuarioLogin] = useState(null);
+	const [detallesActivo, setDetallesActivo] = useState(false);
 
-  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu, contexUsuarioLogin, setContexUsuarioLogin, urlBase, urlBaseImg};
+  const valor = {contexUsuario, setContexUsuario, contexMenu, setContexMenu, contexUsuarioLogin, setContexUsuarioLogin, urlBase, urlBaseImg, detallesActivo, setDetallesActivo};
 
   return (
     <DataContext.Provider value={valor}>

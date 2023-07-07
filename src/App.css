@@ -1,10 +1,10 @@
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.App{
+.App {
   height: 100vh;
   user-select: none;
   display: flex;
@@ -16,7 +16,7 @@ input[type=number]::-webkit-outer-spin-button {
   text-transform: uppercase;
 }
 
-.contenedor--centrado{
+.contenedor--centrado {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: center;
 }
 
-.contenedor--usuario{
+.contenedor--usuario {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -33,7 +33,7 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: center;
 }
 
-a{
+a {
   display: contents;
 }
 
@@ -41,42 +41,104 @@ table {
   width: 100%;
 }
 
-.menu--activado{
+.menu--activado {
   width: 300px;
 }
 
-.menu--desactivado{
+.menu--desactivado {
   width: 0px;
 }
 
-.menu{
+.menu {
   background-color: #fff;
 }
 
-.paginaMenu--activa{
+.paginaMenu--activa {
   width: 300px;
 }
 
-.paginaMenu--desactiva{
+.paginaMenu--desactiva {
   width: 0px;
 }
 
-.paginaContenido{
+.paginaContenido {
   width: 99%;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.paginaContenido--menu{
+.paginaContenido--menu {
   width: 99%;
   height: 4em;
 }
 
-.paginaContenido--informacion{
+.paginaContenido--informacion {
   width: 100%;
+  margin: 10px 0.5px 10px 10px;
   height: calc(100% - 4em);
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+.contenedor__grid {
+  width: 100%;
+  margin: 2%;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(225px, 100%), 1fr));
+  gap: 15px;
+}
+
+.contenedor__paginador {
+  padding: 20px;
+}
+
+.contenedor__buscador {
+  position: absolute;
+  top: 0;
+  padding: 5px;
+  display: flex;
+  height: 3em;
+  width: 270px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  z-index: 200;
+}
+
+.contenedor__badge {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 3em;
+  width: 4em;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  z-index: 200;
+}
+
+.contenedor__detallesProducto {
+  position: absolute;
+  height: 100vh;
+  background-color: black;
+  width: min(350px, 100%);
+  top: 0;
+  right: 0;
+  z-index: 200;
+}
+
+.contenedor__detallesProducto--desactiva {
+  display: none;
+}
+
+.contenedor__detallesProducto--activa {
+  width: calc(100% - 350px);
 }

@@ -1,12 +1,16 @@
+/*-- Librerias --*/
+import { nuevoHash, compararHash } from "./bcrypt.js";
+
+/*-- Clases y controladores --*/
 import { axiosGet } from "../api/axiosGet.js";
 import { axiosPost } from "../api/axiosPost.js";
 import { axiosPut } from "../api/axiosPut.js";
-import { nuevoHash, compararHash } from "./bcrypt.js";
+import { axiosDelete } from "../api/axiosDelete.js";
 import { usuario } from "./usuario.js"
 const classAxiosGet = new axiosGet();
 const classAxiosPost = new axiosPost();
 const classAxiosPut = new axiosPut();
-
+const classAxiosDelete = new axiosDelete();
 export class admin extends usuario  {
   constructor() {
     super();
@@ -26,5 +30,20 @@ export class admin extends usuario  {
   // PUT
   async modificarEstadoUsuario(nuevoEstado = {}) {
     return await classAxiosPut.cambiarEstadoUsuario(nuevoEstado);
+  }
+
+  // PUT
+  async modificarEstadoVerificadoUsuario(nuevoEstado = {}) {
+    return await classAxiosPut.cambiarEstadoVerificadoUsuario(nuevoEstado);
+  }
+
+  // PUT
+  async modificarDatosUsuario(nuevoDatos = {}) {
+    return await classAxiosPut.cambiarDatosUsuario(nuevoDatos);
+  }
+
+  // DELETE
+  async eliminarEmpleado(datos = 0) {
+    return await classAxiosDelete.eliminarEmpleado(datos)
   }
 }
