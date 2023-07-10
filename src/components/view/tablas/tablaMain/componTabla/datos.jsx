@@ -25,6 +25,7 @@ export function TablaBody({datos}) {
 		const remplazo = "$1.";
 		return numero.toString().replace(expresion, remplazo);
 	}
+	
 	const generarTupla = (tupla) =>{
 		console.clear();
 		let key = tupla["tipo"]; 
@@ -78,7 +79,7 @@ export function TablaBody({datos}) {
 	const tipo = (key, id, valor, url, subClaseValor, operacion, parametro) => {
 		switch (key) {
 			case "boton":
-				return <td className="dato--boton" >  <BotonTabla operacion={operacion} id={id} parametro={parametro} tipo={subClaseValor}></BotonTabla> </td>
+				return <td className="dato--boton" >  <BotonTabla operacion={operacion} id={id} parametro={parametro} icono={subClaseValor} nombre={valor}></BotonTabla> </td>
 			case "normal":
 				return <td className="dato--normal"> {valor} </td>
 			case "estado":

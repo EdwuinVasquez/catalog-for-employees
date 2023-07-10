@@ -66,9 +66,9 @@ export function RegistroLista() {
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
 					tipo: "boton",
-					valor: "Modificar",
+					valor: "Activar centa",
 					img: "",
-					subClase: "estadoUsuarioPendiente",
+					subClase: "BsFillPersonCheckFill",
 					operacion: modificarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				},{

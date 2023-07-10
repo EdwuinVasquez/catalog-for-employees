@@ -80,9 +80,9 @@ export function EmpleadosListaToken() {
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
 					tipo: "boton",
-					valor: "token",
+					valor: "Activar token",
 					img: "",
-					subClase: "estadoUsuarioPendiente",
+					subClase: "RiLoginCircleFill",
 					operacion: modificarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				},{

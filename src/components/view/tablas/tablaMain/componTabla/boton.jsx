@@ -1,78 +1,60 @@
-//importacion de librerias
+/*-- Estilos --*/
+import "../../../../style/tabla/tablaMain/boton.css"
+
+/*-- Importacion --*/
 import { React } from "react";
+import Tooltip from '@mui/material/Tooltip';
+
 import { FaUserSlash, FaUserCheck, FaUserEdit } from "react-icons/fa";
 import { ImEye } from "react-icons/im";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { AiFillBehanceSquare } from "react-icons/ai";
-import "../../../../style/tabla/tablaMain/boton.css"
 
-export function BotonTabla({operacion, id, parametro, tipo}) {
+
+import { RxUpdate } from "react-icons/rx";
+import { RiLoginCircleFill } from "react-icons/ri";
+import { MdDelete } from "react-icons/md";
+
+import { BsFillPersonCheckFill } from "react-icons/bs";
+
+
+
+export function BotonTabla({operacion, id, parametro, icono, nombre}) {
+	/*-- Asignar retorno --*/
 	const tipoBoton = (key) => {
 		switch (key) {
-			case "estadoUsuario":
-				return <>
-				<button 
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--estado"> Modificar
-					<FaUserSlash className="botonTabla--icono" />
-				</button>
-				</>
-			case "estadoUsuarioPendiente":
-				return <>
-				<button
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--activar"> Activar
-					<FaUserCheck className="botonTabla--icono" />
-				</button>
-				</>
-			case "modificarUsuario":
-				return <>
-				<button
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--editar"> Editar
-					<FaUserEdit className="botonTabla--icono" />
-				</button>
-				</>
-				case "eliminarUsuario":
-					return <>
-					<button
-					 onClick={() => operacion(id, parametro)} 
-					 className="botonTabla  botonTabla--eliminar"> Eliminar
-						<FaUserEdit className="botonTabla--icono" />
-					</button>
-					</>
-			case "estadoProducto":
-				return <>
-				<button
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--estado"> Modificar
-					<ImEye className="botonTabla--icono" />
-				</button>
-				</>
-			case "disponibilidadProducto":
-				return <>
-				<button
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--disponibilidad"> Cambiar estado
-					<MdOutlineLocalGroceryStore className="botonTabla--icono" />
-				</button>
-				</>
-			case "modificarProducto":
-				return <>
-				<button
-				 onClick={() => operacion(id, parametro)} 
-				 className="botonTabla  botonTabla--editar"> Editar
-					<AiFillBehanceSquare className="botonTabla--icono" />
-				</button>
-				</>
+			case "RxUpdate":
+				return <RxUpdate  
+					className="botonTabla__icono  botonTabla__icono--negro"
+					onClick={() => operacion(id, parametro)} 
+					> </RxUpdate>
+				case "MdDelete": 
+				  return <MdDelete 
+					className="botonTabla__icono  botonTabla__icono--rojo"
+					onClick={() => operacion(id, parametro)} 
+					> </MdDelete>
+				case "RiLoginCircleFill": 
+				  return <RiLoginCircleFill 
+					className="botonTabla__icono  botonTabla__icono--verde"
+					onClick={() => operacion(id, parametro)} 
+					> </RiLoginCircleFill>
+				case "BsFillPersonCheckFill": 
+				  return <BsFillPersonCheckFill 
+					className="botonTabla__icono  botonTabla__icono--negro"
+					onClick={() => operacion(id, parametro)} 
+					> </BsFillPersonCheckFill>
 			default:
-				break;
+				return <></>
 		}
 	}
 
   return(
-    <>
-			{tipoBoton(tipo)}
+		<>		
+		<Tooltip title={nombre} placement="top">
+			<div className="botonTabla">
+				{tipoBoton(icono)}
+			</div>
+		</Tooltip>
 		</>
 	);
 };

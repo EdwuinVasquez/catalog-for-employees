@@ -78,18 +78,18 @@ export function EmpleadosLista() {
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
 					tipo: "boton",
-					valor: "Modificar",
+					valor: "Modificar estado",
 					img: "",
-					subClase: "estadoUsuario",
+					subClase: "RxUpdate",
 					operacion: modificarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				},{
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
 					tipo: "boton",
-					valor: "Eliminar",
+					valor: "Eliminar empleado",
 					img: "",
-					subClase: "eliminarUsuario",
+					subClase: "MdDelete",
 					operacion: eliminarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				},{
