@@ -2,7 +2,8 @@
 import './App.css';
 
 /*-- Librerias --*/
-import { Route, Routes, Outlet, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import React from 'react';
 
 /*-- Paginas Principales --*/
 import { useDataContex } from "./components/view/contex.jsx";
@@ -26,12 +27,12 @@ import { EditarEmpleado } from "./components/view/paginaMain/paginasAdmin/emplea
 import { ProductoLista } from "./components/view/paginaMain/paginasAdmin/producto/productoLista.jsx";
 
 /*-- Paginas de empleado --*/
-import { CatalogoCards } from './components/view/paginaMain/paginasEmpleado/catalogo';
-import { useEffect } from 'react';
+import { CatalogoCards } from './components/view/paginaMain/paginasEmpleado/catalogo/catalogo';
+import { AjustesCarrito } from './components/view/paginaMain/paginasEmpleado/catalogo/ajustesCarrito';
 
 
 function App() {
-	const { contexUsuario, setContexUsuario, contexMenu, setContexMenu, detallesActivo, setDetallesActivo } = useDataContex();
+	const { contexUsuario, contexMenu } = useDataContex();
   
   return (
     <div className="App">
@@ -44,7 +45,7 @@ function App() {
       </div>
       <div className="paginaContenido">
         <div className="paginaContenido--menu"></div>
-        <div className={`paginaContenido--informacion  ${window.location.href.toUpperCase().includes("EMPLE/HOME") && detallesActivo ? "contenedor__detallesProducto--activa" : ""}`}>
+        <div className={`paginaContenido--informacion `}>
           {/* RUTAS GLOBAL */}
           <Routes>
             <Route path="">
@@ -75,9 +76,8 @@ function App() {
             </Route>
             {/* RUTAS EMPLEADO */}
             <Route path="/emple/*">
-              <Route path="" element={contexUsuario == "EMPLEADO" ? (<h1>home</h1>) : ( <Navigate to="/process"/>)} />
-              <Route path="home" element={contexUsuario == "EMPLEADO" ? (<CatalogoCards />) : ( <Navigate to="/process"/>)} />
-              <Route path="carrito" element={contexUsuario == "EMPLEADO" ? (<h1>ventas</h1>) : ( <Navigate to="/process"/>)} />
+              <Route path="" element={contexUsuario == "EMPLEADO" ? (<CatalogoCards />) : ( <Navigate to="/process"/>)} />
+              <Route path="carrito" element={contexUsuario == "EMPLEADO" ? (<AjustesCarrito />) : ( <Navigate to="/process"/>)} />
               <Route path="compras" element={contexUsuario == "EMPLEADO" ? (<h1>ventas</h1>) : ( <Navigate to="/process"/>)} />
               <Route path="historial" element={contexUsuario == "EMPLEADO" ? (<h1>ventas</h1>) : ( <Navigate to="/process"/>)} />
               <Route path="configuracion" element={contexUsuario == "EMPLEADO" ? (<h1>ventas</h1>) : ( <Navigate to="/process"/>)} />

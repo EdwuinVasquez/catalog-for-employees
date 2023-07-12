@@ -142,3 +142,7 @@ table {
 .contenedor__detallesProducto--activa {
   width: calc(100% - 350px);
 }
+
+.carritoCatalogo--desactiva {
+  display: none;
+}
