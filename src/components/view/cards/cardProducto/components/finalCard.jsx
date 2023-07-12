@@ -10,18 +10,22 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { regex } from '../../../../../backend/regex';
 import { useDataContex } from '../../../contex';
 
-export function FinalCardProducto({precio, id , buscarProducto}) {
-	const {setDetallesActivo, setContexMenu } = useDataContex();
+export function FinalCardProducto({precio, id , buscarProducto, carrito, activarDetalles}) {
+	/*-- Estado global menu --*/
+	const {setContexMenu } = useDataContex();
 
+	/*-- Formatear numero a pesos --*/
 	const formatearNumero = (numero) =>{
 		const expresion = regex.pesos;
 		const remplazo = "$1.";
 		return numero.toString().replace(expresion, remplazo);
 	}
 
+	/*-- Cerrar los detalles --*/
 	const procesarClick = ((codigo) => {
-		setDetallesActivo(true);
+		activarDetalles(true);
 		setContexMenu(false);
+		carrito(false);
 		buscarProducto(codigo);
 	})
 
