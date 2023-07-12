@@ -1,13 +1,18 @@
-//importacion de librerias
-import {React } from "react";
-import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+/*-- Estilos --*/
 import '../../style/botones/botonMenu.css';
+
+/*-- Librerias --*/
+import { React } from "react";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+
+/*-- clases y controladores --*/
 import { useDataContex } from "../contex";
 
-export function BotonMenu({manejarClick, estado}) {
-	const { contexUsuario, setContexUsuario, contexMenu, setContexMenu, setDetallesActivo } = useDataContex();
+export function BotonMenu({estado}) {
+	/*-- Estado global del menu --*/
+	const { contexMenu, setContexMenu } = useDataContex();
 
-
+	/*-- Asignar icono segun el estado --*/
     const iconoHtml = (key) => {
 		switch (key) {
 			case "MdKeyboardDoubleArrowLeft":
@@ -19,15 +24,16 @@ export function BotonMenu({manejarClick, estado}) {
 		}
 	}
 
+	/*-- Cambiar el estado del menu --*/
 	const cambiarEstado = () =>{
 		setContexMenu(!contexMenu);
-		setDetallesActivo(false);
 	}
+
 	return(
 		<div>
       <button 
           className={"botonMenu  " + (estado === false ? "botonMenu--desactivo" : "botonMenu--activo")}
-					onClick={cambiarEstado} >
+			onClick={cambiarEstado} >
           {
             iconoHtml(estado === false ? "MdKeyboardDoubleArrowRight" : "MdKeyboardDoubleArrowLeft" )
           }
