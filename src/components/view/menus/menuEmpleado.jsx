@@ -25,9 +25,8 @@ export function MenuEmpleado() {
 				<CabezeraMenu ></CabezeraMenu>
 				<BotonMenu estado={contexMenu} ></BotonMenu>
 				<ul className="lista">
-					<OpcionMenu opciones={false} ruta="home" icono="FaHome" nombre="Catalogo"></OpcionMenu>
-					<OpcionMenu opciones={false} ruta="carrito" icono="FaHome" nombre="Carrito"></OpcionMenu>
-					<OpcionMenu opciones={false} ruta="compras" icono="FaHome" nombre="Mis pedidos"></OpcionMenu>
+					<OpcionMenu opciones={false} ruta="" icono="MdLocalGroceryStore" nombre="Catalogo"></OpcionMenu>
+					<OpcionMenu opciones={false} ruta="compras" icono="MdWorkHistory" nombre="Mis pedidos"></OpcionMenu>
 					<OpcionMenu opciones={false} ruta="historial" icono="GrHistory" nombre="Historial"></OpcionMenu>
 					<OpcionMenu opciones={false} ruta="configuracion" icono="RiSettings4Fill" nombre="Configuracion"></OpcionMenu>
 					<OpcionMenu opciones={false} ruta="../" icono="ImExit" nombre="Cerrar sesion"></OpcionMenu>

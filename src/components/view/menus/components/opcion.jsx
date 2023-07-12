@@ -1,5 +1,9 @@
-import { React, useState } from "react";
-import { MdKeyboardArrowRight } from "react-icons/md";
+/*-- Estilos --*/
+import "../../../style/menus/components/opcion.css";
+
+/*-- Librerias --*/
+import { React } from "react";
+import { MdKeyboardArrowRight, MdLocalGroceryStore, MdWorkHistory } from "react-icons/md";
 import { FaHome, FaMoneyBill, FaUserPlus} from "react-icons/fa";
 import { RiSettings4Fill, RiUserFollowFill} from "react-icons/ri";
 import { HiBuildingStorefront } from "react-icons/hi2";
@@ -8,10 +12,10 @@ import { VscGraph } from "react-icons/vsc";
 import { GrHistory } from "react-icons/gr";
 import { ImExit } from "react-icons/im";
 import { Link } from "react-router-dom";
-import "../../../style/menus/components/opcion.css";
 
 export function OpcionMenu(props) {
-  const subMenuClick = (e) =>{
+	/*-- activar subopciones --*/
+	const subMenuClick = (e) =>{
 		let elementoPadre = e.target;
 		if(e.target && e.target.tagName != "DIV") elementoPadre = e.target.parentNode;
 		
@@ -25,8 +29,9 @@ export function OpcionMenu(props) {
 			}
 			menu.style.height = `${height}px`;
 		}
-  }
+  	}
 
+	/*-- asignar icono requerido --*/
 	const iconoHtml = (key) => {
 		switch (key) {
 			case "MdKeyboardArrowRight":
@@ -49,6 +54,10 @@ export function OpcionMenu(props) {
 				return <VscGraph className="opcion__icono"></VscGraph>
 			case "GrHistory":
 				return <GrHistory className="opcion__icono"></GrHistory>
+			case "MdLocalGroceryStore":
+				return <MdLocalGroceryStore className="opcion__icono"></MdLocalGroceryStore>
+			case "MdWorkHistory":
+				return <MdWorkHistory className="opcion__icono"></MdWorkHistory>
 			case "ImExit":
 				return <ImExit className="opcion__icono"></ImExit>
 			default:
