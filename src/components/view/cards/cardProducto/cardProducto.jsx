@@ -12,12 +12,12 @@ import { FinalCardProducto } from './components/finalCard';
 
 /*-- Clases y controladores --*/
 
-export function CardProducto({nombre, detalles, imagen, valor, id, buscarProducto}) {
+export function CardProducto({nombre, detalles, setDetalles, imagen, valor, id, buscarProducto, carrito}) {
 	return(
 		<div className="cardProducto">
             <ImagenCardProducto url={imagen}></ImagenCardProducto>
             <InformacionCardProducto titulo={nombre} detalles={detalles}></InformacionCardProducto>
-            <FinalCardProducto precio={valor} id={id} buscarProducto={buscarProducto}></FinalCardProducto>
+            <FinalCardProducto precio={valor} activarDetalles={setDetalles} id={id} buscarProducto={buscarProducto} carrito={carrito}></FinalCardProducto>
 		</div>
 	);
 };
