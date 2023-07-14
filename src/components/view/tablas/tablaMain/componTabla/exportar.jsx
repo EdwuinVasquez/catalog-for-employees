@@ -1,10 +1,16 @@
 //importacion de librerias
 import { React } from "react";
-import { Pdf, pdf, json, csv, excel } from "../../../logos/img.jsx";
+import { Pdf, json, csv, excel } from "../../../logos/img.jsx";
 import "../../../../style/tabla/tablaMain/exportar.css"
 
-export function TablaExportar() {
-  return(
+/*-- Bloque oculto --*/
+const tipoBloque = (bloque) =>{
+  if(bloque){
+    return <>
+    <div></div>
+    </>
+  }else{
+    return <>
     <div htmlFor="export-file" className="exportar">
       <label htmlFor="export-file" className="exportar__boton" title="Export File"></label>
       <input className="exportar__input" type="checkbox" id="export-file" />
@@ -16,5 +22,16 @@ export function TablaExportar() {
         <label className="exportar__label" id="toEXCEL">EXCEL <img src={excel} alt="" /></label>
       </div>
     </div>
+    </>
+  }
+}
+
+export function TablaExportar({oculto}) {
+  return(
+    <>
+    {
+      tipoBloque(oculto)
+    }
+    </>
 	);
 };
