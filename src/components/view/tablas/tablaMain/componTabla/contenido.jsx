@@ -1,27 +1,27 @@
-//importacion de librerias
-import { React } from "react";
-import { TablaTitulos } from "./titulos";
+/*-- Estilos --*/
 import "../../../../style/tabla/tablaMain/contenido.css"
+
+/*-- Importaciones --*/
+import { React } from "react";
+
+/*-- Componentes --*/
+import { TablaTitulos } from "./titulos";
 import { TablaBody } from "./datos";
 
 export function TablaCotenido({titulos, contenido, actualizar}) {
-
+  /*-- Generar tuplas --*/
   const datos = (() =>{
     try {
-      console.clear();
       if(contenido[0].length > 2){
         return contenido.map((valor) =>
           <TablaBody datos={valor}></TablaBody>
         )
       }else{
-        console.log(contenido)
         return <h1>No hay datos almacenados</h1>
       }
     } catch (error) {
       actualizar();
     }
-
-    
   });
 
   return(

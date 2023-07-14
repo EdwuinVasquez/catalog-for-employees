@@ -4,20 +4,11 @@ import "../../../../style/tabla/tablaMain/boton.css"
 /*-- Importacion --*/
 import { React } from "react";
 import Tooltip from '@mui/material/Tooltip';
-
-import { FaUserSlash, FaUserCheck, FaUserEdit } from "react-icons/fa";
-import { ImEye } from "react-icons/im";
-import { MdOutlineLocalGroceryStore } from "react-icons/md";
-import { AiFillBehanceSquare } from "react-icons/ai";
-
-
 import { RxUpdate } from "react-icons/rx";
 import { RiLoginCircleFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
-
+import { IoIosEye } from "react-icons/io";
 import { BsFillPersonCheckFill } from "react-icons/bs";
-
-
 
 export function BotonTabla({operacion, id, parametro, icono, nombre}) {
 	/*-- Asignar retorno --*/
@@ -43,6 +34,11 @@ export function BotonTabla({operacion, id, parametro, icono, nombre}) {
 					className="botonTabla__icono  botonTabla__icono--negro"
 					onClick={() => operacion(id, parametro)} 
 					> </BsFillPersonCheckFill>
+				case "IoIosEye": 
+					return <IoIosEye 
+					  className="botonTabla__icono  botonTabla__icono--negro"
+					  onClick={() => operacion(id, parametro)} 
+					  > </IoIosEye>
 			default:
 				return <></>
 		}
