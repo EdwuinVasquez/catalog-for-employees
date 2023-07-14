@@ -1,11 +1,15 @@
-//importacion de librerias
-import { React } from "react";
+/*-- Estilos --*/
 import "../../../../style/tabla/tablaMain/cabezera.css"
+
+/*-- importaciones --*/
+import { React } from "react";
+
+/*-- Componentes --*/
 import { TablaBuscador } from "./buscador";
 import { TablaExportar } from "./exportar";
 import { FechaActual } from "../../../titulos/fechaActual";
 
-export function TablaCabezera({buscador, titulo, manejarClick}) {
+export function TablaCabezera({buscador, titulo, manejarClick, oculto}) {
   return(
     <>
       <section className="tablaMain__cabezera">
@@ -13,7 +17,7 @@ export function TablaCabezera({buscador, titulo, manejarClick}) {
           <FechaActual></FechaActual>
          </h2>
         <TablaBuscador placeholder={buscador} manejarClick={manejarClick}></TablaBuscador>
-        <TablaExportar></TablaExportar>
+        <TablaExportar oculto={oculto}></TablaExportar>
       </section>
     </>
 	);

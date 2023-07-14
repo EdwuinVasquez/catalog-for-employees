@@ -1,7 +1,8 @@
-//importacion de librerias
-import { React } from "react";
-import { BsFillArrowUpCircleFill } from "react-icons/bs";
+/*-- Estilos --*/
 import "../../../../style/tabla/tablaMain/cabezera.css";
+
+/*-- Importaciones --*/
+import { React } from "react";
 
 export function TablaTitulos({titulos}) {
   return(
