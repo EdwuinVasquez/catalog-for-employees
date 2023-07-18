@@ -5,11 +5,12 @@ import { usuario } from "../../../backend/class/usuario";
 const classUsuario = new usuario();
 
 export function Process() {
-	const { urlBase, setContexUsuario, setContexUsuarioLogin } = useDataContex();
+	const { urlBase, setContexUsuario, setContexUsuarioLogin, setCarrito } = useDataContex();
 	
 	useEffect(() => {
 		try {
 			let datosAlmacenados = JSON.parse(localStorage.getItem("usuario"));
+			let datosAlmacenadosCarrito = JSON.parse(localStorage.getItem("carritoCopia"));
 		  classUsuario.ingresar(datosAlmacenados['cedula'], datosAlmacenados['clave'])
 		  .then(resultado =>{
 		  	if(resultado[0]['CEDULA'] == undefined){
@@ -29,6 +30,9 @@ export function Process() {
   
 		  	setContexUsuario(resultado[0]['ROL']);
 		  	setContexUsuarioLogin(sesion);
+			if(datosAlmacenadosCarrito !== undefined && datosAlmacenadosCarrito !== null){
+				setCarrito(datosAlmacenadosCarrito);
+			}
 		  	
 		  	switch (resultado[0]['ROL']) {
 		  		case "SUPER":
