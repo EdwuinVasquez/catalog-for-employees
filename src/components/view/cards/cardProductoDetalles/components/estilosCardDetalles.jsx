@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useDataContex } from "../../../contex.jsx";
 
 export function EstilosCardProductoDetalles({lista, manejarCambioEstilo}) {
+	/*-- Url Imagen base --*/
 	const { urlBaseImg } = useDataContex();
 
 	/*-- Estilo elegido --*/
@@ -17,17 +18,18 @@ export function EstilosCardProductoDetalles({lista, manejarCambioEstilo}) {
 
 	/*-- Cambiar estilo elegido --*/
 	const seleccionarEstilo = ((codigo) =>{
-		const datos = lista.find(valor => `${valor[0]["id"]}-${valor[0]["contenido"]}` == codigo)
+		const datos = lista.find(valor => `${valor[0]["nombreItem"]}` == codigo)
 		manejarCambioEstilo(datos);
 		setSeleccionado(codigo);
 	});
 
+	/*-- Asignar etiquetas segun tipo (Image, hexadecimal) --*/
 	const element = ((tipo, valor) =>{
 		if(tipo == 1){
 			return <>
 			<img 
-							className="cardProductoDetalles__estilos--imagen" 
-							src={`${urlBaseImg}${valor}`} alt="" /> 
+				className="cardProductoDetalles__estilos--imagen" 
+				src={`${urlBaseImg}${valor}`} alt="" /> 
 			</>
 		}	else if(tipo == 0){
 			return <>
@@ -43,7 +45,7 @@ export function EstilosCardProductoDetalles({lista, manejarCambioEstilo}) {
 	/*-- Cargar estilos los estilos de tipo 1 son imagenes, los demas son colores--*/
 	const targetaEstilo = (() =>{
 		return lista.map((valor) => {
-			let codigo = `${valor[0]["id"]}-${valor[0]["contenido"]}`
+			let codigo = `${valor[0]["nombreItem"]}`
 			return <Tooltip key={`${codigo}`} title={`${valor[0]["disponible"] == 0 ? "PRODUCTO NO DISPONIBLE" : valor[0]["estilo"]}`} placement="top">
 				<div 
 					key={`${codigo}`} 

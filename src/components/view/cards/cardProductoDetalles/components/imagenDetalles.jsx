@@ -10,6 +10,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDataContex } from "../../../contex.jsx";
 
 export function ImagenCardProductoDetalles({url}) {
+	/*-- Url base de la carpeta images --*/
 	const { urlBaseImg } = useDataContex();
 
 	return(

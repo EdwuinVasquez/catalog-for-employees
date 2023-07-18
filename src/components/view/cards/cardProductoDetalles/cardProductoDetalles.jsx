@@ -12,22 +12,24 @@ import { FinalCardProductoDetalles } from './components/finalCardDetalles';
 import { EstilosCardProductoDetalles } from './components/estilosCardDetalles';
 import { CerrarCardProductoDetalles } from './components/cerrarCardDetalles';
 
-/*-- Clases y controladores --*/
-
-
-export function CardProductoDetalles({nombre, detalles, lista, imagen, valor, valorBase, id, estadoDetalle}) {
+export function CardProductoDetalles({nombre, detalles, lista, imagen, valor, valorBase, setEstadoDetalle}) {
+	/*-- Estado producto con estilo --*/
 	const [productoEstilo, setProductoEstilo] = useState("0");
+	
+	/*-- Estado imagen del estilo --*/
+	const [imagenItem, setImagenItem] = useState(imagen);
 
 	const manejarCambioEstilo = ((datos) =>{
 		if(datos[0]["disponible"] == 1){
 			setProductoEstilo(datos);
+			setImagenItem(datos[0]["imgItem"]);
 		}
 	});
 
 	return(
 		<div className="cardProductoDetalles">
-			<CerrarCardProductoDetalles estadoDetalle={estadoDetalle}></CerrarCardProductoDetalles>
-      <ImagenCardProductoDetalles url={imagen}></ImagenCardProductoDetalles>
+			<CerrarCardProductoDetalles cerrarDetalles={setEstadoDetalle}></CerrarCardProductoDetalles>
+      <ImagenCardProductoDetalles url={imagenItem}></ImagenCardProductoDetalles>
       <InformacionCardProductoDetalles titulo={nombre} detalles={detalles}></InformacionCardProductoDetalles>
 			<EstilosCardProductoDetalles lista={lista} manejarCambioEstilo={manejarCambioEstilo}></EstilosCardProductoDetalles>
       <FinalCardProductoDetalles precio={valor} precioBase={valorBase} productoSelect={productoEstilo}></FinalCardProductoDetalles>
