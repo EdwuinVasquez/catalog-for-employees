@@ -13,4 +13,29 @@ export class axiosPost {
 		});
 		return resultado;
 	}
+
+	//POST registar venta
+	async nuevaVenta(ventaDatos){
+		let resultado = await conex.post(`/pos/venta/nueva`, ventaDatos)
+		.then(resultado => {
+			return resultado.data;
+		}).catch(function (error) {
+			console.clear();
+			console.warn("Error al almacenar los datos");
+			return false;
+		});
+		return resultado;
+	}
+
+	//POST registar venta item
+	async nuevaVentaItem(datosItem){
+		let resultado = await conex.post(`/pos/item/venta`, datosItem)
+		.then(resultado => {
+			return resultado.data;
+		}).catch(function (error) {
+			console.warn("Error al almacenar los datos");
+			return false;
+		});
+		return resultado;
+	}
 }
