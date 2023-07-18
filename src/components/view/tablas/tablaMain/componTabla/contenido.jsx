@@ -26,7 +26,7 @@ export function TablaCotenido({titulos, contenido, actualizar}) {
 
   return(
     <>
-    <section className="tabla__contenido">
+    <section className="tabla__contenido" id="tabla__contenido--export">
       <table>
         <TablaTitulos titulos={titulos}></TablaTitulos>
         <tbody>

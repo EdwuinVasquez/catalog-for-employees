@@ -9,7 +9,7 @@ import { TablaBuscador } from "./buscador";
 import { TablaExportar } from "./exportar";
 import { FechaActual } from "../../../titulos/fechaActual";
 
-export function TablaCabezera({buscador, titulo, manejarClick, oculto}) {
+export function TablaCabezera({buscador, titulo, manejarClick, oculto, header, body, bodyCsv, nombre, bodyJson}) {
   return(
     <>
       <section className="tablaMain__cabezera">
@@ -17,7 +17,7 @@ export function TablaCabezera({buscador, titulo, manejarClick, oculto}) {
           <FechaActual></FechaActual>
          </h2>
         <TablaBuscador placeholder={buscador} manejarClick={manejarClick}></TablaBuscador>
-        <TablaExportar oculto={oculto}></TablaExportar>
+        <TablaExportar bodyCsv={bodyCsv} bodyJson={bodyJson} nombre={nombre} header={header} body={body} oculto={oculto}></TablaExportar>
       </section>
     </>
 	);
