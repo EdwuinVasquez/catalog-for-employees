@@ -14,7 +14,7 @@ export function RegistroLista() {
 	const [datosMain, setDatosMain] = useState();
 	
 	/*-- Titulos de la tabla --*/
-	const titulosTabla = ["Cedula", "Nombre", "Registro", "Contato", "Verificar", "Estado"]
+	const titulosTabla = ["Cedula", "Nombre", "Registro", "Contato",  "Estado", "Verificar",]
 
 	/*-- Generar la lista de nuevos registros --*/
 	const generarLista = async () => {
@@ -65,21 +65,21 @@ export function RegistroLista() {
 				},{
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
-					tipo: "boton",
-					valor: "Activar centa",
-					img: "",
-					subClase: "BsFillPersonCheckFill",
-					operacion: modificarEstadoEmpleado,
-					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
-				},{
-					key: valor["CEDULA"],
-					id: valor["CEDULA"],
 					tipo: "estado",
 					valor: "3",
 					img: "",
 					subClase: "3",
 					operacion: "",
 					parametro: ""
+				},{
+					key: valor["CEDULA"],
+					id: valor["CEDULA"],
+					tipo: "boton",
+					valor: "Activar centa",
+					img: "",
+					subClase: "BsFillPersonCheckFill",
+					operacion: modificarEstadoEmpleado,
+					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				}]
 			);
 			if(nuevosDatos.length > 0) setDatosMain(nuevosDatos);
@@ -128,7 +128,8 @@ export function RegistroLista() {
 				buscadorTitulo="Sin verificar"  
 				actualizar={generarLista}
 				tablaTitulos={titulosTabla}
-				tablaContenido={datosMain} >
+				tablaContenido={datosMain} 
+				oculto={true}>
 			</TablaMain>
 		</>
 	);

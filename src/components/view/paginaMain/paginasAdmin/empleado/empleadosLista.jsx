@@ -15,7 +15,7 @@ export function EmpleadosLista() {
 	const [datosMain, setDatosMain] = useState();
 	
 	/*-- Titulos de la tabla --*/
-	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Cambiar estado", "Eliminar empleado", "Estado"]
+	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Estado", "Cambiar estado", "Eliminar empleado"]
 
 	/*-- Generar lista de empleados --*/
 	const generarLista = async () => {
@@ -77,6 +77,15 @@ export function EmpleadosLista() {
 				},{
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
+					tipo: "estado",
+					valor: valor["USUARIO_ACTIVADO"],
+					img: "",
+					subClase: valor["USUARIO_ACTIVADO"],
+					operacion: "",
+					parametro: ""
+				},{
+					key: valor["CEDULA"],
+					id: valor["CEDULA"],
 					tipo: "boton",
 					valor: "Modificar estado",
 					img: "",
@@ -92,15 +101,6 @@ export function EmpleadosLista() {
 					subClase: "MdDelete",
 					operacion: eliminarEstadoEmpleado,
 					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
-				},{
-					key: valor["CEDULA"],
-					id: valor["CEDULA"],
-					tipo: "estado",
-					valor: valor["USUARIO_ACTIVADO"],
-					img: "",
-					subClase: valor["USUARIO_ACTIVADO"],
-					operacion: "",
-					parametro: ""
 				}]
 			);
 			if(nuevosDatos.length > 0) setDatosMain(nuevosDatos);
@@ -178,7 +178,8 @@ export function EmpleadosLista() {
 				buscadorTitulo="Empleados"  
 				actualizar={generarLista}
 				tablaTitulos={titulosTabla}
-				tablaContenido={datosMain} >
+				tablaContenido={datosMain} 
+				oculto={true}>
 			</TablaMain>
 		</>
 	);

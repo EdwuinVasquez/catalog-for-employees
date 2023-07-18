@@ -17,7 +17,7 @@ export function EmpleadosListaToken() {
 	const [datosMain, setDatosMain] = useState();
 	
 	/*-- Titulos de la tabla --*/
-	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Token", "Estado"]
+	const titulosTabla = ["Cedula", "Nombre", "N°compras", "Ingreso", "Contato", "Estado", "Token"]
 
 	/*-- Generar Lista de empleados --*/
 	const generarLista = async () => {
@@ -79,21 +79,21 @@ export function EmpleadosListaToken() {
 				},{
 					key: valor["CEDULA"],
 					id: valor["CEDULA"],
-					tipo: "boton",
-					valor: "Activar token",
-					img: "",
-					subClase: "RiLoginCircleFill",
-					operacion: modificarEstadoEmpleado,
-					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
-				},{
-					key: valor["CEDULA"],
-					id: valor["CEDULA"],
 					tipo: "estado",
 					valor: valor["USUARIO_ACTIVADO"],
 					img: "",
 					subClase: valor["USUARIO_ACTIVADO"],
 					operacion: "",
 					parametro: ""
+				},{
+					key: valor["CEDULA"],
+					id: valor["CEDULA"],
+					tipo: "boton",
+					valor: "Activar token",
+					img: "",
+					subClase: "RiLoginCircleFill",
+					operacion: modificarEstadoEmpleado,
+					parametro: valor["USUARIO_ACTIVADO"] == 1 ? 0 : 1
 				}]
 			);
 			if(nuevosDatos.length > 0) setDatosMain(nuevosDatos);
@@ -162,7 +162,8 @@ export function EmpleadosListaToken() {
 				buscadorTitulo="Empleados Token"  
 				actualizar={generarLista}
 				tablaTitulos={titulosTabla}
-				tablaContenido={datosMain} >
+				tablaContenido={datosMain}
+				oculto={true} >
 			</TablaMain>
 		</>
 	);
