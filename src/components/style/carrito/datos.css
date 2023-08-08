@@ -1,0 +1,60 @@
+.carritoCatalogo__item{
+    display: grid;
+    grid-template-columns: .4fr 1fr .1fr;
+    gap: 5px;
+    align-items: center;
+    grid-template-rows: 100px;
+    border-bottom: 1px solid #bbb;
+}
+
+.carritoCatalogo__item:hover{
+    background-color: #f7f7f758;
+}
+
+.carritoCatalogo__datos{
+    display: grid;
+    grid-template-rows: 1fr .6fr;
+    gap: 2px;
+}
+
+.carritoCatalogo__icono{
+    width: 18px;
+    height: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.carritoCatalogo__icono:hover{
+    background-color: #dfdfdf;
+}
+
+.carritoCatalogo__imagen{
+    width: 100%;
+    height: auto;
+}
+
+.carritoCatalogo__imagen--img{
+    width: 100%;
+}
+
+.carritoCatalogo__datos--cantidad{
+    display: block;
+    font-weight: 500;
+    color: #bbb;
+    font-size: 90%;
+}
+
+.carritoCatalogo__datos--precio{
+    color: #00a69f;
+    font-weight: 600;
+}
+
+.carritoCatalogo__datos--nombre{
+    display: block;
+    color: #333;
+    word-wrap: break-word;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    text-align: initial;
+}

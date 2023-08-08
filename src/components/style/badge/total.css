@@ -1,0 +1,38 @@
+.carritoTotal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.carritoTotal__total {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  font-size: 15px;
+}
+
+.carritoTotal__boton {
+    width: calc(100% - 8px);
+    height: 35px;
+    padding: 2px 4px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    transition: all 1000ms;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.carritoTotal__boton:hover {
+    transform: scale(1);
+}
+
+.carritoTotal__boton--verde {
+  color: #fff;
+  background-color: #6ae476;
+  outline: 2px solid #4cca58;
+}

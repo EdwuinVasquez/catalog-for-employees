@@ -1,9 +1,26 @@
 .cardProducto {
-	width: min(210px, 100%);
-	height: 255px;
-	padding: .8em;
-	background: #f5f5f540;
-	position: relative;
-	overflow: visible;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  width: min(210px, 100%);
+  height: 255px;
+  padding: 0.8em;
+  background: #f5f5f540;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.cardProducto {
+  animation-duration: 1s;
+  animation-name: cardProducto;
+}
+
+@keyframes cardProducto {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }

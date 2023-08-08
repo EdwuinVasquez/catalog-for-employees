@@ -12,6 +12,11 @@
   transition: all .3s ease;
 }
 
+.campoVerificado__password{
+  margin-left: -30px;
+	cursor: pointer;
+}
+
 .campoVerificado__texto--verde {
   color: rgb(0, 255, 0);
 }

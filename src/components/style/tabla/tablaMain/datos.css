@@ -1,34 +1,102 @@
 .estado {
-    padding: .4rem 0;
-    border-radius: 2rem;
-    text-align: center;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  text-align: center;
 }
 
 .estado--bloqueado {
-    background-color: #6a6969e8;
-    color: #fff;
+  background-color: #6a6969e8;
+  color: #fff;
 }
 
 .estado--activo {
-    background-color: #48e16d;
-    color: #000000;
+  background-color: #48e16d;
+  color: #000000;
 }
 
 .estado--entregado {
-    background-color: #0d3ea0;
-    color: #fff;
+  background-color: #0d3ea0;
+  color: #fff;
 }
 
 .estado--cancelado {
-    background-color: #f32051de;
-    color: #fff;
+  background-color: #f32051de;
+  color: #fff;
 }
 
 .estado--pendiente {
-    background-color: #fffd35bf;
+  background-color: #fffd35bf;
+  color: #999a9e;
 }
 
 .estado--pago {
-    background-color: #0da042;
-    color: #fff;
+  background-color: #0da042;
+  color: #fff;
+}
+
+.card__botonCantidad {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 5px;
+  padding: 5px;
+  background: #f7f7f7;
+  border-radius: 50px;
+}
+
+.card__inputNumberTabla {
+  width: 70px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid #838383;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.card__inputTextTabla{
+  width: 350px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid #838383;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.card__botonCantidad--cantidad,
+.card__botonCantidad--boton {
+  font-weight: 500;
+  font-size: 18px;
+  color: #464646;
+}
+
+.card__botonCantidad--boton {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: none;
+  background: transparent;
+}
+
+.card__botonCantidad--boton:hover {
+  background-color: #bbbbbb86;
+}
+
+.dato--estilo {
+  width: 50px;
+  height: 50px;
+}
+
+.dato--estiloImagen {
+  width: 45px;
+  height: 45px;
+}
+
+.dato--estiloColor {
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  border: 1px solid #bbb;
 }

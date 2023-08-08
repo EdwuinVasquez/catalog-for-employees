@@ -1,0 +1,121 @@
+.carritoCatalogo {
+  position: absolute;
+  width: 350px;
+  z-index: 300;
+  background-color: #fff;
+  height: 99vh;
+  top: 0;
+  right: 0;
+}
+
+.carritoCatalogo__lista {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+.carritoCatalogo__tituloSuperios {
+  width: 100%;
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr .4fr;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  border-bottom: 1px solid #bbb;
+}
+
+.carritoCatalogo__tituloSuperios--titulo{
+    padding: 15px;
+    font-weight: 700;
+}
+.carritoCatalogo__valor {
+  border-top: 1px solid #bbb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  height: 28vh;
+}
+
+.carritoCatalogo__valor--section {
+  width: 90%;
+}
+
+.carritoCatalogo__valor--titulo {
+  display: inline-block;
+  width: 50%;
+  text-align: initial;
+}
+
+.carritoCatalogo__valor--precio {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}
+
+.carritoCatalogo__boton {
+  width: 100%;
+  height: 35px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  transition: all 1000ms;
+  position: relative;
+  overflow: hidden;
+}
+
+.carritoCatalogo__boton--gris {
+  color: #000;
+  background-color: #dbdbdb;
+  outline: 2px solid #ababab;
+}
+
+.carritoCatalogo__boton--verde {
+  color: #fff;
+  background-color: #6ae476;
+  outline: 2px solid #4cca58;
+}
+
+.carritoCatalogo__boton:hover {
+  transform: scale(1.06);
+}
+
+.carritoCatalogo__boton--gris:hover {
+  outline: 2px solid #cecece;
+  box-shadow: 4px 5px 17px -4px #c3c3c3;
+}
+
+.carritoCatalogo__boton--verde:hover {
+  outline: 2px solid #56bb60;
+  box-shadow: 4px 5px 17px -4px #51db5f;
+}
+
+.carritoCatalogo__boton::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #1bddff;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.carritoCatalogo__boton--gris::before {
+  background-color: #bababa;
+}
+
+.carritoCatalogo__boton--verde::before {
+  background-color: #51d75f;
+}
+
+.carritoCatalogo__boton:hover::before {
+  width: 210%;
+}
