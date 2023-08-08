@@ -1,17 +1,20 @@
-//importacion de librerias
-import {React } from "react";
-import '../../style/titulos/fechaActual.css'
+/*-- Estilos --*/
+import '../../style/titulos/fechaActual.css';
+
+/*-- Librerias --*/
+import { React } from "react";
 
 export function FechaActual() {
-    const generarFecha = () =>{
-      const today = new Date();
-			const now = today.toLocaleString();
-			return now;
-    }
-	return(
+	return (
 		<>
-		<p className="fechaActual">actualizada el:  {generarFecha()} </p>
+			<p className="fechaActual">actualizada el:  {generarFecha()} </p>
 		</>
 	);
 };
 
+/*-- Generar fecha actual --*/
+const generarFecha = () => {
+	const today = new Date();
+	const now = today.toLocaleString();
+	return now;
+}
