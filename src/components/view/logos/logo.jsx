@@ -1,10 +1,14 @@
-//importacion de librerias
-import {React } from "react";
-import '../../style/logos/logo.css'
+/*-- Estilos --*/
+import '../../style/logos/logo.css';
+
+/*-- Librerias --*/
+import { React } from "react";
+
+/*-- Imagnes --*/
 import { logo } from "./img.jsx";
 
 export function Logo() {
-	return(
+	return (
 		<>
 			<div className="logo">
 				<img className="logo__imagen" src={logo} alt="" />
