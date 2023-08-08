@@ -172,7 +172,6 @@ export function CatalogoCardsConfiguracion({ cerrar, actualizar }) {
 	/*-- Cargar datos de pagina en pantalla --*/
 	const datos = (() => {
 		try {
-			console.log(idProductosSeleccionado)
 			const corteInicio = paginaActual * elementosPorPagina;
 			const corteFinal = corteInicio + elementosPorPagina;
 			const listaElementosPagina = (datosFiltrados.slice(corteInicio, corteFinal));
