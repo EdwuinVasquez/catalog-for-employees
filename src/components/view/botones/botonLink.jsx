@@ -1,12 +1,13 @@
-//importacion de librerias
-import {React } from "react";
+/*-- Estilos --*/
 import '../../style/botones/botonLink.css';
-import { Link } from "react-router-dom";
 
-export function BotonLink({texto}) {
-	return(
+/*-- Librerias --*/
+import { React } from "react";
+
+export function BotonLink({ texto, manejarClick }) {
+	return (
 		<div>
-			<Link to="/" className="botonLink">{texto}</Link>
+			<a onClick={() => manejarClick()} className="botonLink">{texto}</a>
 		</div>
 	);
 };
