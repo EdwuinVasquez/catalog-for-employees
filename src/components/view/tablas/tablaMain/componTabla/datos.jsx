@@ -4,6 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 /*-- Librerias --*/
 import { React, useState, forwardRef } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -13,187 +14,239 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Tooltip from '@mui/material/Tooltip';
 
 /*-- Componentes --*/
 import { BotonTabla } from "./boton";
 
 /*-- clases y controladores --*/
-import swal from'sweetalert2';
 import { useDataContex } from "../../../contex";
-import { regex } from "../../../../../backend/regex";
+import { formatearNumero, nombreEstado, subClase, imprimir } from "../../../../../backend/funcioneGenerales.js";
+import { maximixarImagen } from "../../../../../backend/swetAlert2.js"
 
 /*-- Activar transicion --*/
 const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+	return <Slide direction="up" ref={ref} {...props} />;
+})
 
-export function TablaBody({datos}) {
+export function TablaBody({ datos }) {
 	/*-- ruta basica de imagenes --*/
 	const { urlBaseImg } = useDataContex();
 
+	/*-- Datos seleccionados en el select --*/
+	const [estadoNombre, setEstadoNombre] = useState([]);
+
 	/*-- Estado de datos adicioneles --*/
-	const [open, setOpen] = useState(false);
+	const [openMas, setOpenMas] = useState(false);
+
+	/*-- Estado de datos adicioneles --*/
+	const [openEstado, setOpenEstado] = useState(false);
 
 	/*-- Mostrar datos adicionales--*/
-	const handleClickOpen = () => {
-		setOpen(true);
+	const handleClickOpenMas = () => {
+		setOpenMas(true);
 	};
-  
+
 	/*-- Ocultar Datos adiccionales --*/
-	const handleClose = () => {
-	  setOpen(false);
+	const handleCloseMas = () => {
+		setOpenMas(false);
 	};
 
-	/*-- imprimir --*/
-	const imprimir = () => {
-	  window.print();
+	/*-- Mostrar datos adicionales--*/
+	const handleClickOpenEstado = () => {
+		setOpenEstado(true);
 	};
 
-	/*-- Mostrar Imagen en gran escala --*/
-	const maximixarImagen = (url, nombre) => {
-		swal.fire({
-			title: `${nombre}`,
-			imageUrl: `${url}`,
-			imageWidth: 400,
-			imageHeight: 200,
-		})
-	}
+	/*-- Ocultar Datos adiccionales --*/
+	const handleCloseEstado = () => {
+		setOpenEstado(false);
+	};
 
-	/*-- Formatear Numero en pesos --*/
-	const formatearNumero = (numero) =>{
-		const expresion = regex.pesos;
-		const remplazo = "$1.";
-		return numero.toString().replace(expresion, remplazo);
-	}
-	
+	/*-- Ocultar Datos adiccionales --*/
+	const handleCloseEstadoModificar = (operacion, parametro) => {
+		const nuevoEstado = {
+			codigo: parametro["codigo"],
+			cedula: parametro["cedula"],
+			estado: estadoNombre
+		}
+		operacion(nuevoEstado);
+		setOpenEstado(false);
+	};
+
 	/*-- Generar una fila en la tabla --*/
-	const generarTupla = (tupla) =>{
-		console.clear();
-		let key = tupla["tipo"]; 
-		let id = tupla["id"]; 
-		let valor = tupla["valor"]; 
-		let img = tupla["img"]; 
-		let subClase = tupla["subClase"]; 
-		let operacion = tupla["operacion"]; 
-		let parametro = tupla["parametro"]; 
+	const generarTupla = (tupla) => {
+		let key = tupla["tipo"];
+		let id = tupla["id"];
+		let valor = tupla["valor"];
+		let img = tupla["img"];
+		let subClase = tupla["subClase"];
+		let operacion = tupla["operacion"];
+		let parametro = tupla["parametro"];
 		return tipo(key, id, valor, img, subClase, operacion, parametro)
 	}
 
-	/*-- Asignar un nombre al estado --*/
-	const estadoNombre = (valor) =>{
-		switch (valor) {
-			case "0":
-				return "Bloqueado";
-			case "1":
-				return "Activo";
-			case "2":
-				return "Cancelado";
-			case "3":
-				return "Pendiente";
-			case "4":
-				return "Entregado";
-			case "5":
-				return "Pago";
-			default:
-				return "Error";
+	/*-- Asignar etiquetas segun tipo (Image, hexadecimal) --*/
+	const element = ((tipo, valor) => {
+		if (tipo == 1) {
+			return <>
+				<LazyLoadImage
+					className="dato--estiloImagen"
+					src={`${urlBaseImg}${valor}`} alt="" effect="blur" />
+			</>
+		} else if (tipo == 0) {
+			return <>
+				<button className="dato--estiloColor"
+					style={{
+						backgroundColor: valor,
+					}}
+				></button>
+			</>
 		}
-	}
+	})
 
-	/*-- Subclases de los estados --*/
-	const subClase = (valor) =>{
-		switch (valor) {
-			case "0":
-				return "bloqueado";
-			case "1":
-				return "activo";
-			case "2":
-				return "cancelado";
-			case "3":
-				return "pendiente";
-			case "4":
-				return "pago";
-			case "5":
-				return "entregado";
-			default:
-				return "bloqueado";
+	/*-- actualizar los datos del selector --*/
+	const handleChange = (event) => {
+		const {
+			target: { value },
+		} = event;
+		const nuevoFiltro = typeof value === 'string' ? value.split(',') : value;
+		setEstadoNombre(nuevoFiltro);
+	};
+
+	/*-- actualizar los datos con input --*/
+	const enviarInputDato = ((e, operacion, parametro) => {
+		if (e.keyCode === 13 && !e.shiftKey) {
+			operacion(e, parametro);
 		}
-	}
+	})
 
 	/*-- Tipos de datos en la fila --*/
 	const tipo = (key, id, valor, url, subClaseValor, operacion, parametro) => {
 		switch (key) {
 			case "boton":
-				return <td className="dato--boton" >  <BotonTabla operacion={operacion} id={id} parametro={parametro} icono={subClaseValor} nombre={valor}></BotonTabla> </td>
+				return <td key={uuidv4()} className="dato--boton" >  <BotonTabla operacion={operacion} id={id} parametro={parametro} icono={subClaseValor} nombre={valor}></BotonTabla> </td>
 			case "normal":
-				return <td className="dato--normal"> {valor} </td>
+				return <td key={uuidv4()} className="dato--normal" > {valor} </td>
 			case "estado":
-					return <td className="dato--estado"> <strong><p className={"estado  estado--"+ subClase(subClaseValor)}> {estadoNombre(valor)} </p></strong> </td>
-			case "costo":
-				return <td className="dato--costo"> <strong>${formatearNumero(valor)}</strong> </td>
-			case "imag":
-				return <>
-				<td className="dato--imag"> 
-					<LazyLoadImage onClick={() => maximixarImagen(`${urlBaseImg}${url}`, valor)} src={`${urlBaseImg}${url}`} alt="" effect="blur"/> 
+				return <td key={uuidv4()} className="dato--estado" > <strong><p className={"estado  estado--" + subClase(subClaseValor)}> {nombreEstado(valor)} </p></strong> </td>
+			case "estilo":
+				return <td key={uuidv4()} className="dato--estilo" >
+					{element(subClaseValor, valor)}
 				</td>
-				</>
+			case "costo":
+				return <td key={uuidv4()} className="dato--costo"> <strong>${formatearNumero(valor)}</strong> </td>
+			case "imag":
+				return <td key={uuidv4()} className="dato--imag">
+					<LazyLoadImage onClick={() => maximixarImagen(`${urlBaseImg}${url}`, valor)} src={`${urlBaseImg}${url}`} alt="" effect="blur" />
+				</td>
 			case "botonCantidad":
-				return <>
-				<td className="dato--normal">
+				return <td key={uuidv4()} className="dato--normal">
 					<div className="card__botonCantidad">
 						<button className="card__botonCantidad--boton" onClick={() => operacion(parametro, "-")} >-</button>
 						<div className="card__botonCantidad--cantidad">{valor}</div>
-						<button className="card__botonCantidad--boton"  onClick={() => operacion(parametro, "+")}>+</button>
+						<button className="card__botonCantidad--boton" onClick={() => operacion(parametro, "+")}>+</button>
 					</div>
 				</td>
-				</>
+			case "inputNumber":
+				return <td key={uuidv4()} className="dato--normal">
+					<input className="card__inputNumberTabla" type="number" defaultValue={valor} step="any" min="0" onKeyDown={(e) => enviarInputDato(e, operacion, parametro)}></input>
+				</td>
+			case "inputText":
+				return <td key={uuidv4()} className="dato--normal">
+					<input className="card__inputTextTabla" type="text" defaultValue={valor} step="any" min="0" onKeyDown={(e) => enviarInputDato(e, operacion, parametro)}></input>
+				</td>
 			case "botonMas":
-				return <>
-				<td className="dato--boton">
-					<BotonTabla variant="outlined" operacion={handleClickOpen} id={id} parametro={parametro} icono={subClaseValor} nombre={valor}></BotonTabla>
+				return <td key={uuidv4()} className="dato--boton">
+					<BotonTabla variant="outlined" operacion={handleClickOpenMas} id={id} parametro={parametro} icono={subClaseValor} nombre={valor}></BotonTabla>
 					<Dialog
-    				fullScreen
-    			  open={open}
-    			  onClose={handleClose}
-    			  TransitionComponent={Transition}
+						fullScreen
+						open={openMas}
+						onClose={handleCloseMas}
+						TransitionComponent={Transition}
 					>
-    			<AppBar sx={{ position: 'relative' }}>
-    			  <Toolbar>
-    			    <IconButton
-    			      edge="start"
-    			      color="inherit"
-    			      onClick={handleClose}
-    			      aria-label="close"
-    			    >
-    			      <CloseIcon />
-    			    </IconButton>
-    			    <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-    			      Cerrar
-    			    </Typography>
-							<Button autoFocus color="inherit" onClick={imprimir}>
-								Imprimir
-            </Button>
-    			  </Toolbar>
-    			</AppBar>
+						<AppBar sx={{ position: 'relative' }}>
+							<Toolbar>
+								<IconButton
+									edge="start"
+									color="inherit"
+									onClick={handleCloseMas}
+									aria-label="close"
+								>
+									<CloseIcon />
+								</IconButton>
+								<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+									Cerrar
+								</Typography>
+								<Button autoFocus color="inherit" onClick={imprimir}>
+									Imprimir
+								</Button>
+							</Toolbar>
+						</AppBar>
 						<div>
-						{operacion(parametro)}
+							{operacion(parametro)}
 						</div>
 					</Dialog>
-					</td>
-				</>
+				</td>
+			case "cambiarEstadoCompra":
+				return <td key={uuidv4()} className="dato--normal">
+					<Tooltip title="Estado" placement="bottom">
+						<div>
+							<Button variant="outlined" onClick={handleClickOpenEstado}>
+								Estado
+							</Button>
+							<Dialog open={openEstado} onClose={handleCloseEstado}>
+								<DialogTitle>Selecciona los estados</DialogTitle>
+								<DialogContent>
+									<DialogContentText>
+										<strong>Pendiente: </strong>Solicitud de compra sin procesamiento. <br />
+										<strong>Cancelado: </strong>Solicitud de compra rechazada o cancelada.  <br />
+										<strong>Paga: </strong>Solicitud de compra con un pago exitoso.  <br />
+										<strong>Entregada: </strong>Solicitud de compra la cual ya fue entregada.  <br /><br />
+									</DialogContentText>
+									<div>
+										<FormControl fullWidth>
+											<InputLabel id="demo-simple-select-label">Nuevo estado</InputLabel>
+											<Select
+												labelId="demo-simple-select-label"
+												id="demo-simple-select"
+												value={estadoNombre}
+												label="Nuevo estado"
+												onChange={handleChange}
+											>
+												<MenuItem value={2}>Cancelado</MenuItem>
+												<MenuItem value={5}>Paga</MenuItem>
+												<MenuItem value={4}>Entregada</MenuItem>
+											</Select>
+										</FormControl>
+									</div>
+								</DialogContent>
+								<DialogActions>
+									<Button onClick={() => handleCloseEstadoModificar(operacion, parametro)}>Aplicar</Button>
+								</DialogActions>
+							</Dialog>
+						</div>
+					</Tooltip>
+				</td>
 			default:
-				return <td> "valor no recibido" </td>
+				return <td key={uuidv4()}> "valor no recibido" </td>
 		}
 	}
 
-  return(
-  <>
-    <tr key={datos[0]["key"]}>
+	return (
+		<tr key={uuidv4()}>
 			{
-				datos.map((data) => 
+				datos.map((data) =>
 					generarTupla(data)
 				)
 			}
-    </tr>
-	</>
+		</tr>
 	);
 };
