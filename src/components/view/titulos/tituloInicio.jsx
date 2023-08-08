@@ -1,11 +1,13 @@
-//importacion de librerias
-import {React } from "react";
-import '../../style/titulos/tituloInicio.css'
+/*-- Estilos --*/
+import '../../style/titulos/tituloInicio.css';
 
-export function TituloInicio({texto}) {
-	return(
+/*-- Librerias --*/
+import { React } from "react";
+
+export function TituloInicio({ texto }) {
+	return (
 		<>
-		<p className="tituloInicio">{texto} </p>
+			<p className="tituloInicio">{texto} </p>
 		</>
 	);
 };
