@@ -1,13 +1,15 @@
-//importacion de librerias
-import {React } from "react";
+/*-- Estilo --*/
 import '../../style/subtitulos/subtituloCentrado.css';
 
-export function SubtituloCentrado({texto}) {
-	return(
+/*-- Librerias --*/
+import { React } from "react";
+
+export function SubtituloCentrado({ texto }) {
+	return (
 		<>
-		<div className="subtituloCentrado">
-  	  <span className="subtituloCentrado__texto">{texto}</span>
-  	</div>
+			<div className="subtituloCentrado">
+				<span className="subtituloCentrado__texto">{texto}</span>
+			</div>
 		</>
 	);
 };
