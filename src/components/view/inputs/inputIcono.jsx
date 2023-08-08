@@ -1,14 +1,20 @@
-//importacion de librerias
-import { React, useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { GoLock } from "react-icons/go";
+/*-- Estilo --*/
 import '../../style/inputs/inputIcono.css';
 
-export function CampoIcono({id, titulo, icono, tipo, manejarCambio}) {
-	const value = (event) =>{
-    let value = event.target.value;
-    manejarCambio(value.trim(), id);
-  }
+/*-- Librerias --*/
+import { React, useState } from "react";
+import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { AiOutlineUser } from "react-icons/ai";
+import { GoLock } from "react-icons/go";
+
+export function CampoIcono({ id, titulo, icono, tipo, manejarCambio }) {
+	const [password, setPassword] = useState(false);
+	const [visible, setVisible] = useState("password");
+
+	const value = (event) => {
+		let value = event.target.value;
+		manejarCambio(value.trim(), id);
+	}
 
 	const iconoHtml = (key) => {
 		switch (key) {
@@ -21,11 +27,32 @@ export function CampoIcono({id, titulo, icono, tipo, manejarCambio}) {
 		}
 	}
 
-  return(
+	const passwordSee = () => {
+		setPassword(true);
+		setVisible("text");
+	};
+
+	const passwordNotSee = () => {
+		setPassword(false);
+		setVisible("password");
+	};
+
+	const typePass = ((valor, estado, icono) => {
+		if (valor) {
+			if (estado) {
+				return <BsEye className="campoIcono__icono  campoIcono__password" onClick={() => passwordNotSee()}></BsEye>
+			} else {
+				return <BsEyeSlash className="campoIcono__icono  campoIcono__password" onClick={() => passwordSee()}></BsEyeSlash>
+			}
+		} else {
+			return iconoHtml(icono)
+		}
+	})
+	return (
 		<div className="campoIcono">
 			<label className="campoIcono__titulo">{titulo}</label>
-			{iconoHtml(icono)}
-			<input className="campoIcono__input" onChange={value} placeholder="" title="" autoComplete="off" type={tipo} ></input>
+			{typePass(tipo.toUpperCase() == "PASSWORD", password, icono)}
+			<input className="campoIcono__input" onChange={value} placeholder="" title="" autoComplete="off" type={tipo.toUpperCase() == "PASSWORD" ? visible : tipo}  ></input>
 		</div>
 	);
 };
