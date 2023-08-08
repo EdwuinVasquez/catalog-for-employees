@@ -4,38 +4,38 @@ import "../../../style/menus/components/opcion.css";
 /*-- Librerias --*/
 import { React } from "react";
 import { MdKeyboardArrowRight, MdLocalGroceryStore, MdWorkHistory } from "react-icons/md";
-import { FaHome, FaMoneyBill, FaUserPlus} from "react-icons/fa";
-import { RiSettings4Fill, RiUserFollowFill} from "react-icons/ri";
+import { FaHome, FaMoneyBill, FaUserPlus } from "react-icons/fa";
+import { RiSettings4Fill, RiUserFollowFill } from "react-icons/ri";
 import { HiBuildingStorefront } from "react-icons/hi2";
 import { AiFillAppstore } from "react-icons/ai";
-import { VscGraph } from "react-icons/vsc";
+import { VscGraph, VscGraphLine } from "react-icons/vsc";
 import { GrHistory } from "react-icons/gr";
 import { ImExit } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 export function OpcionMenu(props) {
 	/*-- activar subopciones --*/
-	const subMenuClick = (e) =>{
+	const subMenuClick = (e) => {
 		let elementoPadre = e.target;
-		if(e.target && e.target.tagName != "DIV") elementoPadre = e.target.parentNode;
-		
-		if(elementoPadre.nextElementSibling &&  elementoPadre.nextElementSibling.tagName == "UL"){
+		if (e.target && e.target.tagName != "DIV") elementoPadre = e.target.parentNode;
+
+		if (elementoPadre.nextElementSibling && elementoPadre.nextElementSibling.tagName == "UL") {
 			elementoPadre.classList.toggle('flecha');
-	
+
 			let height = 0;
 			let menu = elementoPadre.nextElementSibling;
-			if(menu.clientHeight == "0"){
-					height=menu.scrollHeight;
+			if (menu.clientHeight == "0") {
+				height = menu.scrollHeight;
 			}
 			menu.style.height = `${height}px`;
 		}
-  	}
+	}
 
 	/*-- asignar icono requerido --*/
 	const iconoHtml = (key) => {
 		switch (key) {
 			case "MdKeyboardArrowRight":
-				return <MdKeyboardArrowRight className="opcion__flecha"/>
+				return <MdKeyboardArrowRight className="opcion__flecha" />
 			case "FaHome":
 				return <FaHome className="opcion__icono"></FaHome>
 			case "FaMoneyBill":
@@ -52,6 +52,8 @@ export function OpcionMenu(props) {
 				return <AiFillAppstore className="opcion__icono"></AiFillAppstore>
 			case "VscGraph":
 				return <VscGraph className="opcion__icono"></VscGraph>
+			case "VscGraphLine":
+				return <VscGraphLine className="opcion__icono"></VscGraphLine>
 			case "GrHistory":
 				return <GrHistory className="opcion__icono"></GrHistory>
 			case "MdLocalGroceryStore":
@@ -63,21 +65,21 @@ export function OpcionMenu(props) {
 			default:
 				console.log(`El icono ${key} no existe`);
 				break;
-			}
 		}
-			
-  return(
+	}
+
+	return (
 		<>
-			<li 
-				className={"opcion__menu  " + (props.opciones ? "opcion__menu--click" : "")} 
+			<li
+				className={"opcion__menu  " + (props.opciones ? "opcion__menu--click" : "")}
 				onClick={subMenuClick}>
-        <div className={"opcion__boton  " + (props.opciones ? "opcion__boton--click" : "")}>
+				<div className={"opcion__boton  " + (props.opciones ? "opcion__boton--click" : "")}>
 					{iconoHtml(props.icono)}
-          <Link to={props.ruta} className="opcion__link">{props.nombre}</Link>
+					<Link to={props.ruta} className="opcion__link">{props.nombre}</Link>
 					{props.opciones ? iconoHtml("MdKeyboardArrowRight") : ""}
-					</div>
+				</div>
 				{props.children}
-      </li>
+			</li>
 		</>
 	);
 }
