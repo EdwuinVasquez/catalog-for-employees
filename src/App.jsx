@@ -3,7 +3,6 @@ import "./App.css";
 
 /*-- Librerias --*/
 import { Route, Routes, Navigate } from "react-router-dom";
-import React from "react";
 
 /*-- Paginas Principales --*/
 import { useDataContex } from "./components/view/contex.jsx";

@@ -1,9 +1,6 @@
 /*-- Estilos --*/
 import "../../../../style/tabla/tablaMain/cabezera.css"
 
-/*-- importaciones --*/
-import { React } from "react";
-
 /*-- Componentes --*/
 import { TablaBuscador } from "./buscador";
 import { TablaExportar } from "./exportar";

@@ -1,6 +1,3 @@
-/*-- Librerias --*/
-import { React } from "react";
-
 /*-- Imagenes --*/
 import logo from "../../img/logo-rimoplasticas.png";
 import pdf from "../../img/pdf.png";
@@ -12,9 +9,9 @@ import buscador from "../../img/search.png";
 export { pdf, json, csv, excel, logo, buscador };
 
 export function Pdf() {
-	return (
-		<>
-			<img src={pdf} alt="" />
-		</>
-	);
-};
+  return (
+    <>
+      <img src={pdf} alt="" />
+    </>
+  );
+}

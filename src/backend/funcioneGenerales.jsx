@@ -93,7 +93,7 @@ export const cerrarAlertaAction = (snackbarId) => (
     <AiFillCloseCircle
       onClick={() => {
         closeSnackbar(snackbarId);
-      }}
+      }}  
     ></AiFillCloseCircle>
   </>
 );

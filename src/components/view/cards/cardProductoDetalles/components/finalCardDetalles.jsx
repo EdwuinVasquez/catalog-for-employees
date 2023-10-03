@@ -10,7 +10,7 @@ import { useSnackbar } from 'notistack';
 /*-- Clases y controladores --*/
 import { useDataContex } from '../../../contex.jsx';
 import { emple } from "../../../../../backend/class/empleado.js";
-import { cerrarAlertaAction as action, formatearNumero } from "../../../../../backend/funcioneGenerales.js"
+import { cerrarAlertaAction as action, formatearNumero } from "../../../../../backend/funcioneGenerales.jsx"
 const classEmple = new emple();
 
 export function FinalCardProductoDetalles({ precio, productoSelect, precioBase }) {

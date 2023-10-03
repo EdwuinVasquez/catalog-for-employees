@@ -2,7 +2,7 @@
 import "../../../style/menus/components/opcion.css";
 
 /*-- Librerias --*/
-import { React, useState } from "react";
+import { useState } from "react";
 
 /*-- Componentes --*/
 import { CampoVerificado } from "../../inputs/inputBase";
@@ -23,38 +23,36 @@ export function AjustesNombre() {
   const [nombreValido, setNombreValido] = useState(false);
 
   /*-- manejar cambio del nombre en el input --*/
-  const manejarCambioNombre = ((dato, correcto) => {
-    setNombreValido(correcto)
-    setNombre(dato.trim())
-  })
+  const manejarCambioNombre = (dato, correcto) => {
+    setNombreValido(correcto);
+    setNombre(dato.trim());
+  };
 
   /*--- Enviar datos a la api para aplicar cambio --*/
-  const aplicarCambio = (() => {
+  const aplicarCambio = () => {
     const nuevosDatos = {
       cedula: contexUsuarioLogin["cedula"],
-      nombre: nombre
+      nombre: nombre,
     };
 
     if (nombreValido) {
-      classUsuario.cambiarNombre(nuevosDatos)
+      classUsuario
+        .cambiarNombre(nuevosDatos)
         .then((result) => {
-          alertaClasica(
-            "success",
-            "Nombre modificado de manera exitosa",
-            5000);
-        }).catch((error) => {
-          alertaClasica(
-            "error",
-            "Ha ocurrido un error",
-            5000);
+          alertaClasica("success", "Nombre modificado de manera exitosa", 5000);
         })
+        .catch((error) => {
+          alertaClasica("error", "Ha ocurrido un error", 5000);
+        });
     } else {
-      alertaToast("error",
+      alertaToast(
+        "error",
         `Hay datos vacios o no se encuentran en el formato correcto`,
         5000,
-        "top-end");
+        "top-end"
+      );
     }
-  })
+  };
   return (
     <>
       <CampoVerificado
@@ -65,7 +63,11 @@ export function AjustesNombre() {
         manejarCambio={manejarCambioNombre}
       ></CampoVerificado>
       <div style={{ width: "92%" }}>
-        <BotonSencillo texto="Guardar" manejarClik={aplicarCambio}></BotonSencillo>
-      </div>    </>
+        <BotonSencillo
+          texto="Guardar"
+          manejarClik={aplicarCambio}
+        ></BotonSencillo>
+      </div>{" "}
+    </>
   );
-};
+}

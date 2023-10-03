@@ -2,7 +2,7 @@
 import "../../../style/menus/components/opcion.css";
 
 /*-- Librerias --*/
-import { React, useState } from "react";
+import { useState } from "react";
 
 /*-- Componentes --*/
 import { SelectBase } from "../../inputs/selectBase";
@@ -31,45 +31,43 @@ export function AjustesPregunta() {
   const [respuestaValida, setRespuestaValida] = useState(false);
 
   /*-- manejar cambio de pregunta --*/
-  const manejarCambioPregunta = ((dato, correcto) => {
-    setPreguntaValida(correcto)
-    setPregunta(dato.trim())
-  });
+  const manejarCambioPregunta = (dato, correcto) => {
+    setPreguntaValida(correcto);
+    setPregunta(dato.trim());
+  };
 
   /*-- manejar cambio de respuesta --*/
-  const manejarCambioRespuesta = ((dato, correcto) => {
-    setRespuestaValida(correcto)
-    setRespuesta(dato.trim())
-  })
+  const manejarCambioRespuesta = (dato, correcto) => {
+    setRespuestaValida(correcto);
+    setRespuesta(dato.trim());
+  };
 
   /*--- Enviar datos a la api para aplicar cambio --*/
-  const aplicarCambio = (() => {
+  const aplicarCambio = () => {
     const nuevosDatos = {
       cedula: contexUsuarioLogin["cedula"],
       pregunta: pregunta,
-      respuesta: respuesta
+      respuesta: respuesta,
     };
 
     if (preguntaValida && respuestaValida) {
-      classUsuario.cambiarPregunta(nuevosDatos)
+      classUsuario
+        .cambiarPregunta(nuevosDatos)
         .then((result) => {
-          alertaClasica(
-            "success",
-            "Pregunta y respuesta modificadas",
-            5000);
-        }).catch((error) => {
-          alertaClasica(
-            "error",
-            "Ha ocurrido un error",
-            5000);
+          alertaClasica("success", "Pregunta y respuesta modificadas", 5000);
         })
+        .catch((error) => {
+          alertaClasica("error", "Ha ocurrido un error", 5000);
+        });
     } else {
-      alertaToast("error",
+      alertaToast(
+        "error",
         `Hay datos vacios o no se encuentran en el formato correcto`,
         5000,
-        "top-end");
+        "top-end"
+      );
     }
-  })
+  };
 
   return (
     <>
@@ -88,8 +86,11 @@ export function AjustesPregunta() {
         manejarCambio={manejarCambioRespuesta}
       ></CampoVerificado>
       <div style={{ width: "92%" }}>
-        <BotonSencillo texto="Guardar" manejarClik={aplicarCambio}></BotonSencillo>
+        <BotonSencillo
+          texto="Guardar"
+          manejarClik={aplicarCambio}
+        ></BotonSencillo>
       </div>
     </>
   );
-};
+}

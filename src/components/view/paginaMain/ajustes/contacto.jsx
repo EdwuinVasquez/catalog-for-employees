@@ -2,7 +2,7 @@
 import "../../../style/menus/components/opcion.css";
 
 /*-- Librerias --*/
-import { React, useState } from "react";
+import { useState } from "react";
 
 /*-- Componentes --*/
 import { CampoVerificado } from "../../inputs/inputBase";
@@ -23,39 +23,40 @@ export function AjustesContacto() {
   const [numeroValido, setNumeroValido] = useState(false);
 
   /*-- manejar cambio del numero en el input --*/
-  const manejarCambioNumero = ((dato, correcto) => {
-    setNumeroValido(correcto)
-    setNumero(dato.trim())
-  })
+  const manejarCambioNumero = (dato, correcto) => {
+    setNumeroValido(correcto);
+    setNumero(dato.trim());
+  };
 
   /*--- Enviar datos a la api para aplicar cambio --*/
-  const aplicarCambio = (() => {
+  const aplicarCambio = () => {
     const nuevosDatos = {
       cedula: contexUsuarioLogin["cedula"],
-      contacto: numero
+      contacto: numero,
     };
 
     if (numeroValido) {
-      classUsuario.cambiarContacto(nuevosDatos)
+      classUsuario
+        .cambiarContacto(nuevosDatos)
         .then((result) => {
           alertaClasica(
             "success",
             "Contacto modificado de manera exitosa",
-            5000);
-        }).catch((error) => {
-          alertaClasica(
-            "error",
-            "Ha ocurrido un error",
-            5000);
+            5000
+          );
         })
+        .catch((error) => {
+          alertaClasica("error", "Ha ocurrido un error", 5000);
+        });
     } else {
-      alertaToast("error",
+      alertaToast(
+        "error",
         `Hay datos vacios o no se encuentran en el formato correcto`,
         5000,
-        "top-end");
+        "top-end"
+      );
     }
-
-  })
+  };
 
   return (
     <>
@@ -67,8 +68,11 @@ export function AjustesContacto() {
         manejarCambio={manejarCambioNumero}
       ></CampoVerificado>
       <div style={{ width: "92%" }}>
-        <BotonSencillo texto="Guardar" manejarClik={aplicarCambio}></BotonSencillo>
+        <BotonSencillo
+          texto="Guardar"
+          manejarClik={aplicarCambio}
+        ></BotonSencillo>
       </div>
     </>
   );
-};
+}

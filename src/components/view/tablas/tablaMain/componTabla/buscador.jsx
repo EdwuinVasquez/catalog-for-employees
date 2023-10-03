@@ -2,7 +2,7 @@
 import "../../../../style/tabla/tablaMain/buscador.css";
 
 /*-- Importaciones --*/
-import { React, useState } from "react";
+import { useState } from "react";
 
 /*-- componentes --*/
 import { buscador } from "../../../logos/img.jsx";
@@ -14,8 +14,8 @@ export function TablaBuscador({ placeholder, manejarClick }) {
   /*-- Actualizar buscador --*/
   const actualizarBuscador = (e) => {
     let value = e.target.value.trim();
-    setBuscar(value)
-  }
+    setBuscar(value);
+  };
 
   /*-- Activar busqueda por tecla enter --*/
   function pulsar(e) {
@@ -26,17 +26,28 @@ export function TablaBuscador({ placeholder, manejarClick }) {
 
   function enviar(texto) {
     const palabra = texto.trim();
-    if (palabra && palabra.slice(-1).toLowerCase() === 's') {
+    if (palabra && palabra.slice(-1).toLowerCase() === "s") {
       manejarClick(palabra.slice(0, -1));
-    }else{
+    } else {
       manejarClick(palabra);
     }
   }
 
   return (
     <div className="buscadorTabla">
-      <input className="buscadorTabla__input" onKeyDown={pulsar} type="search" onChange={actualizarBuscador} placeholder={placeholder} />
-      <img className="buscadorTabla__img" src={buscador} onClick={() => enviar(buscar)} alt="" />
+      <input
+        className="buscadorTabla__input"
+        onKeyDown={pulsar}
+        type="search"
+        onChange={actualizarBuscador}
+        placeholder={placeholder}
+      />
+      <img
+        className="buscadorTabla__img"
+        src={buscador}
+        onClick={() => enviar(buscar)}
+        alt=""
+      />
     </div>
   );
-};
+}
