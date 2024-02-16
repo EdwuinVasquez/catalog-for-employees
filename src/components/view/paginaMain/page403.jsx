@@ -1,9 +1,6 @@
 /*-- Estilos --*/
 import '../../style/paginaMain/pagina403.css';
 
-/*-- Librerias --*/
-import { React } from "react";
-
 export function PageNotAvaible() {
 	return (
 		<div className="pagina403">
@@ -32,4 +29,4 @@ export function PageNotAvaible() {
 			</section>
 		</div>
 	);
-};
+}

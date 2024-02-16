@@ -3,7 +3,7 @@ import "../../style/forms/inicioSesionForm.css";
 
 /*-- Librerias --*/
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*-- Componentes --*/
 import { BotonSencillo } from "../botones/botonSencillo.jsx";
@@ -15,13 +15,12 @@ import { CampoIcono } from "../inputs/inputIcono.jsx";
 
 /*-- clases y controladores --*/
 import { usuario } from "../../../backend/class/usuario.js";
-import { useDataContex } from "../contex.jsx";
 import { alertaInput, alertaToast } from "../../../backend/swetAlert2.js";
 const classUsuario = new usuario();
 
 export function LoginFomulario() {
   /*-- Ruta de la ubicacion de las imagenes en el servidor  --*/
-  const { urlBase } = useDataContex();
+  const navigate = useNavigate();
 
   /*-- Valores de los datos en el formulario --*/
   const [datos, setDatos] = useState({
@@ -56,7 +55,7 @@ export function LoginFomulario() {
         };
         localStorage.removeItem("usuario");
         localStorage.setItem("usuario", JSON.stringify(sesion));
-        window.location.href = `${urlBase}process`;
+        navigate("/process");
       })
       .catch(function (Error) {
         alertaToast("error", `${Error.message}`, 5000, "top-end");
@@ -86,7 +85,6 @@ export function LoginFomulario() {
     classUsuario
       .ingresarConPregunta(datos["cedula"])
       .then((resultado) => {
-        console.log(resultado);
         if (resultado.name !== undefined) {
           throw new Error(`${resultado.message}`);
         }
@@ -99,7 +97,7 @@ export function LoginFomulario() {
         };
         localStorage.removeItem("usuario");
         localStorage.setItem("usuario", JSON.stringify(sesion));
-        window.location.href = `${urlBase}process`;
+        navigate("/process");
       })
       .catch(function (Error) {
         alertaToast("error", `${Error.message}`, 5000, "top-end");

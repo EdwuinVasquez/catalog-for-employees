@@ -2,7 +2,6 @@ import { createContext, useState, useContext } from "react";
 
 export const DataContext = createContext();
 export function DataContextProvider(props) {
-  const urlBase = `${window.location.protocol}//${window.location.host}/VENTA_A_EMPLEADOS_RIMO/#/`;
   const urlBaseImg = `http://10.10.10.9/catalogo-api/galeria/`;
   const [contexMenu, setContexMenu] = useState(false);
   const [contexUsuario, setContexUsuario] = useState(null);
@@ -16,7 +15,6 @@ export function DataContextProvider(props) {
     setContexMenu,
     contexUsuarioLogin,
     setContexUsuarioLogin,
-    urlBase,
     urlBaseImg,
     carrito,
     setCarrito,

@@ -1,9 +1,11 @@
 /*-- Librerias --*/
 import { useDataContex } from "../contex";
+import { useNavigate } from "react-router-dom";
 
 export function Salir() {
+  const navigate = useNavigate();
+
   const {
-    urlBase,
     setContexMenu,
     setContexUsuario,
     setContexUsuarioLogin,
@@ -15,7 +17,7 @@ export function Salir() {
   setContexUsuario(null);
   setContexUsuarioLogin(null);
   setCarrito([]);
-  window.location.href = `${urlBase}`;
+  navigate("/login");
   return (
     <>
       <h1>Cerrando</h1>

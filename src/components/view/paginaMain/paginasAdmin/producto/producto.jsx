@@ -2,7 +2,7 @@
 import "../../../../style/inputs/inputBase.css";
 import "../../../../style/inputs/selectBase.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { evaluate } from "mathjs";
 import { admin } from "../../../../../backend/class/admin.js";
 
@@ -108,9 +108,9 @@ export function ProductoCRUD() {
     return (
       <>
         <datalist id="lista__productos">
-          {productosFiltrados.map((value) => {
+          {productosFiltrados.map((value, index) => {
             return (
-              <option value={value["CODIGO_PRODUCTO"]}>
+              <option key={index} value={value["CODIGO_PRODUCTO"]}>
                 {value["NOMBRE_PRODUCTO"]}
               </option>
             );
@@ -126,8 +126,8 @@ export function ProductoCRUD() {
     if (lista != false) {
       return (
         <>
-          {lista.map((value) => {
-            return <option value={value}>{value}</option>;
+          {lista.map((value, index) => {
+            return <option key={index} value={value}>{value}</option>;
           })}
         </>
       );
@@ -143,9 +143,9 @@ export function ProductoCRUD() {
     if (lista.length > 0 && lista != false) {
       return (
         <>
-          {lista.map((value) => {
+          {lista.map((value, index) => {
             return (
-              <option value={value["CODIGO_CATEGORIA"]}>
+              <option key={index} value={value["CODIGO_CATEGORIA"]}>
                 {value["NOMBRE_CATEGORIA"]}
               </option>
             );
@@ -162,7 +162,7 @@ export function ProductoCRUD() {
 
   const buscarProducto = (e) => {
     const value = e.target.value.trim();
-    const productosFiltrados = datosMain.filter((tupla, index) => {
+    const productosFiltrados = datosMain.filter((tupla) => {
       return tupla["CODIGO_PRODUCTO"] == value;
     });
 
@@ -458,6 +458,10 @@ export function ProductoCRUD() {
     }
   };
 
+  useEffect(() => {
+    generarDatalist(datosMain)
+  }, [])
+
   return (
     <div style={{ width: "100%", padding: "10px" }}>
       {/*-- Codigo --*/}
@@ -645,11 +649,10 @@ export function ProductoCRUD() {
         agregar={agregarProductoEstilo}
       ></ListaItemProducto>
       <div
-        className={`contenedor__detallesProducto  ${
-          detallesActivo && productoListaCompleta != false
+        className={`contenedor__detallesProducto  ${detallesActivo && productoListaCompleta != false
             ? ""
             : "contenedor__detallesProducto--desactiva"
-        }`}
+          }`}
       >
         {datosDetallados()}
       </div>
@@ -660,7 +663,6 @@ export function ProductoCRUD() {
           manejarClik={guardarProducto}
         ></BotonSencillo>
       </div>
-      {generarDatalist(datosMain)}
     </div>
   );
 }

@@ -2,14 +2,14 @@
 import "../../style/paginaMain/pagina404.css";
 
 /*-- Clases y controladores --*/
-import { useDataContex } from "../contex";
+import { useNavigate } from "react-router-dom";
 
 export function PageNotFound() {
-  const { urlBase } = useDataContex();
+  const navigate = useNavigate();
 
   return (
-    <div className="page404">
-      <a href={urlBase} title="Ir al inicio">
+    <div className="page404" onClick={()=> navigate("/login")}>
+      <a onClick={()=> navigate("/login")} title="Ir al inicio">
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-md-12 mt-5 mb-5">

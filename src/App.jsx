@@ -76,7 +76,7 @@ function App() {
           <Route
             path="/admin/*"
             element={
-              contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+              contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                 <MenuSuperAdmin />
               ) : (
                 <Navigate to="/login" />
@@ -147,7 +147,7 @@ function App() {
               <Route
                 path=""
                 element={
-                  contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                  contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                     <HomeAdmin />
                   ) : (
                     <Navigate to="/process" />
@@ -158,7 +158,7 @@ function App() {
                 <Route
                   path="lista"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <ListaComprasAdmin />
                     ) : (
                       <Navigate to="/process" />
@@ -168,7 +168,7 @@ function App() {
                 <Route
                   path="editar"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <AjustesCompra />
                     ) : (
                       <Navigate to="/process" />
@@ -179,7 +179,7 @@ function App() {
               <Route
                 path="reporte"
                 element={
-                  contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                  contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                     <ReporteComprasAdmin />
                   ) : (
                     <Navigate to="/process" />
@@ -189,7 +189,7 @@ function App() {
               <Route
                 path="grafico"
                 element={
-                  contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                  contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                     <HomeGraficos />
                   ) : (
                     <Navigate to="/process" />
@@ -200,7 +200,7 @@ function App() {
                 <Route
                   path="lista"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <ProductoLista />
                     ) : (
                       <Navigate to="/process" />
@@ -210,7 +210,7 @@ function App() {
                 <Route
                   path="categorias"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <CategoriaLista />
                     ) : (
                       <Navigate to="/process" />
@@ -220,7 +220,7 @@ function App() {
                 <Route
                   path="ajustes"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <ProductoCRUD />
                     ) : (
                       <Navigate to="/process" />
@@ -232,7 +232,7 @@ function App() {
                 <Route
                   path="lista"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <EmpleadosLista />
                     ) : (
                       <Navigate to="/process" />
@@ -242,7 +242,7 @@ function App() {
                 <Route
                   path="nuevos"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <RegistroLista />
                     ) : (
                       <Navigate to="/process" />
@@ -252,7 +252,7 @@ function App() {
                 <Route
                   path="token"
                   element={
-                    contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                    contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                       <EmpleadosListaToken />
                     ) : (
                       <Navigate to="/process" />
@@ -263,7 +263,7 @@ function App() {
               <Route
                 path="ajustes"
                 element={
-                  contexUsuario == "ADMIN" || contexUsuario == "SUPER" ? (
+                  contexUsuario == "ADMINISTRADOR" || contexUsuario == "SUPER" ? (
                     <ControladorAjustes />
                   ) : (
                     <Navigate to="/process" />

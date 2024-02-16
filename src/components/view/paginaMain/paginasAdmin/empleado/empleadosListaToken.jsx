@@ -1,5 +1,6 @@
 /*-- Librerias --*/
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /*-- Componentes --*/
 import { TablaMain } from "../../../tablas/tablaMain/tablaMain.jsx";
@@ -26,7 +27,7 @@ const titulosTabla = [
 
 export function EmpleadosListaToken() {
   const { setCarrito } = useDataContex();
-  const { urlBase } = useDataContex();
+  const navigate = useNavigate();
 
   /*-- Lista de empleados --*/
   const [datosMain, setDatosMain] = useState();
@@ -162,7 +163,7 @@ export function EmpleadosListaToken() {
                   };
                   localStorage.removeItem("usuario");
                   localStorage.setItem("usuario", JSON.stringify(sesion));
-                  window.location.href = `${urlBase}process`;
+                  navigate("/process");
                 })
                 .catch(function (error) {
                   return error;

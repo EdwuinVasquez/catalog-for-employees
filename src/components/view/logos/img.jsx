@@ -1,5 +1,5 @@
 /*-- Imagenes --*/
-import logo from "../../img/logo-rimoplasticas.png";
+import logo from "../../img/logo.png";
 import pdf from "../../img/pdf.png";
 import json from "../../img/json.png";
 import csv from "../../img/csv.png";
